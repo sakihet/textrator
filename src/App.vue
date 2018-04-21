@@ -5,33 +5,50 @@
       <AppInput
         labelText="text"
         inputType="text"
+        :value="text"
+        @input="text = $event"
       />
       <AppInput
         labelText="size"
         inputType="number"
+        :value="size"
+        @input="size = $event"
       />
       <AppInput
         labelText="foreground color"
         inputType="text"
+        :value="foregroundColor"
+        @input="foregroundColor = $event"
       />
       <AppInput
         labelText="background color"
         inputType="text"
+        :value="backgroundColor"
+        @input="backgroundColor = $event"
       />
       <AppInput
         labelText="height"
         inputType="number"
+        :value="height"
+        @input="height = $event"
       />
       <AppInput
         labelText="width"
         inputType="number"
+        :value="width"
+        @input="width = $event"
       />
       <AppButton
         text="save"
       />
       <AppCanvas
-        height="256"
-        width="256"
+        :height="height"
+        :width="width"
+        :foregroundColor="foregroundColor"
+        :backgroundColor="backgroundColor"
+        :text="text"
+        :size="size"
+        :font="font"
       />
     </div>
   </div>
@@ -48,6 +65,17 @@ export default {
     AppButton,
     AppCanvas,
     AppInput
+  },
+  data () {
+    return {
+      text: 'hello.',
+      size: 64,
+      font: 'sans-serif',
+      foregroundColor: '#000000',
+      backgroundColor: '#ffffff',
+      height: 256,
+      width: 256
+    }
   }
 }
 </script>

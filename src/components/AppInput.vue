@@ -6,7 +6,12 @@
       </label>
     </div>
     <div class="cell form-input">
-      <input :id="labelText" :type="inputType">
+      <input
+        :id="labelText"
+        :type="inputType"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+      >
     </div>
   </div>
 </template>
@@ -16,12 +21,13 @@ export default {
   name: 'AppInput',
   props: {
     labelText: String,
-    inputType: String
+    inputType: String,
+    value: String
   }
 }
 </script>
 
-<style>
+<style scoped>
 .grid {
   display: flex;
 }
