@@ -20,12 +20,12 @@
 export default {
   name: 'AppCanvas',
   props: {
-    height: String,
-    width: String,
+    height: Number,
+    width: Number,
     foregroundColor: String,
     backgroundColor: String,
     text: String,
-    size: String,
+    size: Number,
     font: String
   },
   mounted () {

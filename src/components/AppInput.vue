@@ -22,7 +22,7 @@ export default {
   props: {
     labelText: String,
     inputType: String,
-    value: String
+    value: [String, Number]
   }
 }
 </script>
