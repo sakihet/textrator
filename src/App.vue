@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <h1>Text Image Generator</h1>
+      <AppInput
+        labelText="text"
+        inputType="text"
+      />
+      <AppInput
+        labelText="size"
+        inputType="number"
+      />
+      <AppInput
+        labelText="foreground color"
+        inputType="text"
+      />
+      <AppInput
+        labelText="background color"
+        inputType="text"
+      />
+      <AppInput
+        labelText="height"
+        inputType="number"
+      />
+      <AppInput
+        labelText="width"
+        inputType="number"
+      />
+      <AppButton
+        text="save"
+      />
+      <AppCanvas
+        height="256"
+        width="256"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppButton from './components/AppButton'
+import AppCanvas from './components/AppCanvas'
+import AppInput from './components/AppInput'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AppButton,
+    AppCanvas,
+    AppInput
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
 }
 </style>
