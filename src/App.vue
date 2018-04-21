@@ -40,6 +40,7 @@
       />
       <AppButton
         text="save"
+        :onClick="save"
       />
       <AppCanvas
         :height="height"
@@ -75,6 +76,14 @@ export default {
       backgroundColor: '#ffffff',
       height: 256,
       width: 256
+    }
+  },
+  methods: {
+    save() {
+      const cv = document.getElementById('cv')
+      const dataUrl = cv.toDataURL('image/png')
+      const w = window.open('about:blank')
+      w.document.write("<img src='" + dataUrl + "'/>")
     }
   }
 }

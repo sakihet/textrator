@@ -5,7 +5,7 @@
       </label>
     </div>
     <div class="cell form-input">
-      <button>
+      <button @click="onClick">
         {{ text }}
       </button>
     </div>
@@ -16,7 +16,11 @@
 export default {
   name: 'AppButton',
   props: {
-    text: String
+    text: String,
+    onClick: {
+      type: Function,
+      required: true
+    }
   }
 }
 </script>
