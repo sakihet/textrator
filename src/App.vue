@@ -8,6 +8,12 @@
         :value="text"
         @input="text = $event"
       />
+      <AppDatalist
+        labelText="font"
+        :datalist="fonts"
+        :value="font"
+        @input="font = $event"
+      />
       <AppInput
         labelText="size"
         inputType="number"
@@ -58,6 +64,7 @@
 <script>
 import AppButton from './components/AppButton'
 import AppCanvas from './components/AppCanvas'
+import AppDatalist from './components/AppDatalist'
 import AppInput from './components/AppInput'
 
 export default {
@@ -65,6 +72,7 @@ export default {
   components: {
     AppButton,
     AppCanvas,
+    AppDatalist,
     AppInput
   },
   data () {
@@ -75,7 +83,16 @@ export default {
       foregroundColor: '#000000',
       backgroundColor: '#ffffff',
       height: 256,
-      width: 256
+      width: 256,
+      fonts: [
+        'arial',
+        'verdana',
+        'tahoma',
+        'georgia',
+        'times new roman',
+        'courier new',
+        'andale mono'
+      ]
     }
   },
   methods: {
