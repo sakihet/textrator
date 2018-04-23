@@ -58,6 +58,8 @@
         :font="font"
       />
     </div>
+    <hr>
+    <a href="https://github.com/sakihet/text-image-generator" target="_blank">github</a>
   </div>
 </template>
 
@@ -113,5 +115,8 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+}
+hr {
+  border: 0.5px inset #ccc;
 }
 </style>
