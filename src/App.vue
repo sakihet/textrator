@@ -67,6 +67,7 @@
     </div>
     <hr>
     <a href="https://github.com/sakihet/text-image-generator" target="_blank">github</a>
+    <p>version: {{ version }}</p>
   </div>
 </template>
 
@@ -75,6 +76,7 @@ import AppButton from './components/AppButton'
 import AppCanvas from './components/AppCanvas'
 import AppDatalist from './components/AppDatalist'
 import AppInput from './components/AppInput'
+import {version} from '../package.json'
 
 export default {
   name: 'app',
@@ -102,7 +104,8 @@ export default {
         'courier new',
         'andale mono'
       ],
-      isTransparent: false
+      isTransparent: false,
+      version: version
     }
   },
   methods: {
