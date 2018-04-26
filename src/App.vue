@@ -44,6 +44,12 @@
         :value="width"
         @input="width = $event"
       />
+      <AppInput
+        labelText="transparent"
+        inputType="checkbox"
+        :value="isTransparent"
+        @change="isTransparent = $event"
+      />
       <AppButton
         text="save"
         :onClick="save"
@@ -56,6 +62,7 @@
         :text="text"
         :size="size"
         :font="font"
+        :isTransparent="isTransparent"
       />
     </div>
     <hr>
@@ -94,7 +101,8 @@ export default {
         'times new roman',
         'courier new',
         'andale mono'
-      ]
+      ],
+      isTransparent: false
     }
   },
   methods: {

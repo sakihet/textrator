@@ -12,6 +12,7 @@
       {{ text }}
       {{ size }}
       {{ font }}
+      {{ isTransparent }}
     </div>
   </div>
 </template>
@@ -26,7 +27,8 @@ export default {
     backgroundColor: String,
     text: String,
     size: Number,
-    font: String
+    font: String,
+    isTransparent: Boolean
   },
   mounted () {
     this.draw()
@@ -37,8 +39,12 @@ export default {
       const ctx = cv.getContext('2d')
       ctx.clearRect(0, 0, this.width, this.height)
       ctx.font = this.size + 'px' + ' ' + this.font
-      ctx.fillStyle = this.backgroundColor
-      ctx.fillRect(0, 0, this.width, this.height)
+      if (this.isTransparent) {
+        ctx.clearRect(0, 0, this.width, this.height)
+      } else {
+        ctx.fillStyle = this.backgroundColor
+        ctx.fillRect(0, 0, this.width, this.height)
+      }
       ctx.fillStyle = this.foregroundColor
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'

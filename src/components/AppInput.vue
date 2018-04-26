@@ -11,6 +11,7 @@
         :type="inputType"
         :value="value"
         @input="$emit('input', $event.target.value)"
+        @change="$emit('change', $event.target.checked)"
       >
     </div>
   </div>
@@ -22,7 +23,7 @@ export default {
   props: {
     labelText: String,
     inputType: String,
-    value: [String, Number]
+    value: [String, Number, Boolean]
   }
 }
 </script>
