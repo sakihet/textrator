@@ -13,6 +13,7 @@
       {{ size }}
       {{ font }}
       {{ isTransparent }}
+      {{ angle }}
     </div>
   </div>
 </template>
@@ -28,6 +29,7 @@ export default {
     text: String,
     size: Number,
     font: String,
+    angle: Number,
     isTransparent: Boolean
   },
   mounted () {
@@ -48,7 +50,11 @@ export default {
       ctx.fillStyle = this.foregroundColor
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillText(this.text, this.width / 2, this.height / 2)
+      ctx.save()
+      ctx.translate(this.width / 2, this.height / 2)
+      ctx.rotate(this.angle * Math.PI / 180)
+      ctx.fillText(this.text, 0, 0)
+      ctx.restore()
     }
   },
   updated () {

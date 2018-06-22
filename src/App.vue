@@ -45,6 +45,12 @@
         @input="width = $event"
       />
       <AppInput
+        labelText="rotate"
+        inputType="number"
+        :value="angle"
+        @input="angle = $event"
+      />
+      <AppInput
         labelText="transparent"
         inputType="checkbox"
         :value="isTransparent"
@@ -62,6 +68,7 @@
         :text="text"
         :size="size"
         :font="font"
+        :angle="angle"
         :isTransparent="isTransparent"
       />
     </div>
@@ -95,6 +102,7 @@ export default {
       backgroundColor: '#ffffff',
       height: 256,
       width: 256,
+      angle: 0,
       fonts: [
         'arial',
         'verdana',
