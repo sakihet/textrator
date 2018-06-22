@@ -61,14 +61,14 @@
         :onClick="save"
       />
       <AppCanvas
-        :height="height"
-        :width="width"
+        :height="parseInt(height)"
+        :width="parseInt(width)"
         :foregroundColor="foregroundColor"
         :backgroundColor="backgroundColor"
         :text="text"
-        :size="size"
+        :size="parseInt(size)"
         :font="font"
-        :angle="angle"
+        :angle="parseInt(angle)"
         :isTransparent="isTransparent"
       />
     </div>
