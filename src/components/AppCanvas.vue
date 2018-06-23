@@ -34,6 +34,7 @@ export default {
   },
   mounted () {
     this.draw()
+    this.emitDataURL()
   },
   methods: {
     draw: function () {
@@ -55,10 +56,15 @@ export default {
       ctx.rotate(this.angle * Math.PI / 180)
       ctx.fillText(this.text, 0, 0)
       ctx.restore()
+    },
+    emitDataURL: function () {
+      const dataURL = document.getElementById('cv').toDataURL('image/png')
+      this.$emit('updated', dataURL)
     }
   },
   updated () {
     this.draw()
+    this.emitDataURL()
   }
 }
 </script>

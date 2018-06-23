@@ -19,7 +19,7 @@ export default {
     text: String,
     onClick: {
       type: Function,
-      required: true
+      required: false
     }
   }
 }

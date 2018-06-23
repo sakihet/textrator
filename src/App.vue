@@ -56,10 +56,12 @@
         :value="isTransparent"
         @change="isTransparent = $event"
       />
-      <AppButton
-        text="save"
-        :onClick="save"
-      />
+      <a :href="dataURL" download="image.png">
+        <AppButton
+          text="download"
+          :onClick="download"
+        />
+      </a>
       <AppCanvas
         :height="parseInt(height)"
         :width="parseInt(width)"
@@ -70,6 +72,7 @@
         :font="font"
         :angle="parseInt(angle)"
         :isTransparent="isTransparent"
+        v-on:updated="updateDataURL($event)"
       />
     </div>
     <hr>
@@ -113,15 +116,16 @@ export default {
         'andale mono'
       ],
       isTransparent: false,
-      version: version
+      version: version,
+      dataURL: ''
     }
   },
   methods: {
-    save() {
-      const cv = document.getElementById('cv')
-      const dataUrl = cv.toDataURL('image/png')
-      const w = window.open('about:blank')
-      w.document.write("<img src='" + dataUrl + "'/>")
+    updateDataURL: function (dataURL) {
+      this.dataURL = dataURL
+    },
+    download: function () {
+      console.log('download')
     }
   }
 }
