@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>Text Image Generator</h1>
+      <AppHeader
+        text="Text Image Generator"
+      />
       <AppInput
         labelText="text"
         inputType="text"
@@ -85,6 +87,7 @@
 import AppButton from './components/AppButton'
 import AppCanvas from './components/AppCanvas'
 import AppDatalist from './components/AppDatalist'
+import AppHeader from './components/AppHeader'
 import AppInput from './components/AppInput'
 import {version} from '../package.json'
 
@@ -94,6 +97,7 @@ export default {
     AppButton,
     AppCanvas,
     AppDatalist,
+    AppHeader,
     AppInput
   },
   data () {
