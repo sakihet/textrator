@@ -58,12 +58,11 @@
         :value="isTransparent"
         @change="isTransparent = $event"
       />
-      <a :href="dataURL" download="image.png">
-        <AppButton
-          text="download"
-          :onClick="download"
-        />
-      </a>
+      <AppAnchor
+        :href="dataURL"
+        download="image.png"
+        text="download"
+      />
       <AppCanvas
         :height="parseInt(height)"
         :width="parseInt(width)"
@@ -84,6 +83,7 @@
 </template>
 
 <script>
+import AppAnchor from './components/AppAnchor'
 import AppButton from './components/AppButton'
 import AppCanvas from './components/AppCanvas'
 import AppDatalist from './components/AppDatalist'
@@ -94,6 +94,7 @@ import {version} from '../package.json'
 export default {
   name: 'app',
   components: {
+    AppAnchor,
     AppButton,
     AppCanvas,
     AppDatalist,
