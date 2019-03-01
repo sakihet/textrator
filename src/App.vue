@@ -128,9 +128,6 @@ export default {
   methods: {
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
-    },
-    download: function () {
-      console.log('download')
     }
   }
 }
