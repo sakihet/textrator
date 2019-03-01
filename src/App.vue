@@ -46,6 +46,11 @@
         :value="width"
         @input="width = $event"
       />
+      <AppSelect
+        labelText="size"
+        :sizeList = "sizeList"
+        @select="updateSize($event)"
+      />
       <AppInput
         labelText="rotate"
         inputType="number"
@@ -89,6 +94,7 @@ import AppCanvas from './components/AppCanvas'
 import AppDatalist from './components/AppDatalist'
 import AppHeader from './components/AppHeader'
 import AppInput from './components/AppInput'
+import AppSelect from './components/AppSelect'
 import {version} from '../package.json'
 
 export default {
@@ -99,7 +105,8 @@ export default {
     AppCanvas,
     AppDatalist,
     AppHeader,
-    AppInput
+    AppInput,
+    AppSelect
   },
   data () {
     return {
@@ -122,12 +129,40 @@ export default {
       ],
       isTransparent: false,
       version: version,
-      dataURL: ''
+      dataURL: '',
+      selectedSizeId: null,
+      sizeList: [
+        {
+          id: 1,
+          name: 'favicon',
+          height: 64,
+          width: 64
+        },
+        {
+          id: 2,
+          name: '128 x 128',
+          height: 128,
+          width: 128
+        },
+        {
+          id: 3,
+          name: '256 x 256',
+          height: 256,
+          width: 256
+        }
+      ]
     }
   },
   methods: {
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
+    },
+    updateSize: function (sizeId) {
+      if (0 < sizeId) {
+        let size = this.sizeList.find(x => x.id === parseInt(sizeId))
+        this.width = size.width
+        this.height = size.height
+      }
     }
   }
 }
