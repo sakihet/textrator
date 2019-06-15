@@ -48,7 +48,7 @@
       />
       <AppSelect
         labelText="size"
-        :sizeList = "sizeList"
+        :optionList = "sizeList"
         @select="updateSize($event)"
       />
       <AppInput

@@ -9,10 +9,10 @@
       <select @change="$emit('select', $event.target.value)">
         <option selected>-</option>
         <option
-          v-for="sizeItem in sizeList"
-          :key="sizeItem.id"
-          :value="sizeItem.id"
-        >{{ sizeItem.name }}</option>
+          v-for="optionItem in optionList"
+          :key="optionItem.id"
+          :value="optionItem.id"
+        >{{ optionItem.name }}</option>
       </select>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
   name: 'AppSelect',
   props: {
     labelText: String,
-    sizeList: Array
+    optionList: Array
   }
 }
 </script>
