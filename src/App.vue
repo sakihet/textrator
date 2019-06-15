@@ -134,9 +134,9 @@ export default {
       sizeList: [
         {
           id: 1,
-          name: 'favicon',
-          height: 64,
-          width: 64
+          name: 'favicon (32 x 32)',
+          height: 32,
+          width: 32
         },
         {
           id: 2,
