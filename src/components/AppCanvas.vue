@@ -12,6 +12,7 @@
       {{ text }}
       {{ size }}
       {{ font }}
+      {{ baseline }}
       {{ isTransparent }}
       {{ angle }}
     </div>
@@ -29,6 +30,7 @@ export default {
     text: String,
     size: Number,
     font: String,
+    baseline: String,
     angle: Number,
     isTransparent: Boolean
   },
@@ -50,7 +52,7 @@ export default {
       }
       ctx.fillStyle = this.foregroundColor
       ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
+      ctx.textBaseline = this.baseline
       ctx.save()
       ctx.translate(this.width / 2, this.height / 2)
       ctx.rotate(this.angle * Math.PI / 180)

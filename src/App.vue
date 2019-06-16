@@ -22,6 +22,11 @@
         :value="size"
         @input="size = $event"
       />
+      <AppSelect
+        labelText="baseline"
+        :optionList = "baselineList"
+        @select="updateBaseline($event)"
+      />
       <AppInput
         labelText="foreground color"
         inputType="text"
@@ -76,6 +81,7 @@
         :text="text"
         :size="parseInt(size)"
         :font="font"
+        :baseline="baseline"
         :angle="parseInt(angle)"
         :isTransparent="isTransparent"
         v-on:updated="updateDataURL($event)"
@@ -113,6 +119,7 @@ export default {
       text: 'hello.',
       size: 64,
       font: 'sans-serif',
+      baseline: 'middle',
       foregroundColor: '#000000',
       backgroundColor: '#ffffff',
       height: 256,
@@ -150,6 +157,32 @@ export default {
           height: 256,
           width: 256
         }
+      ],
+      baselineList: [
+        {
+          id: 1,
+          name: 'top'
+        },
+        {
+          id: 2,
+          name: 'hanging'
+        },
+        {
+          id: 3,
+          name: 'middle'
+        },
+        {
+          id: 4,
+          name: 'alphabetic'
+        },
+        {
+          id: 5,
+          name: 'ideographic'
+        },
+        {
+          id: 6,
+          name: 'bottom'
+        }
       ]
     }
   },
@@ -162,6 +195,11 @@ export default {
         let size = this.sizeList.find(x => x.id === parseInt(sizeId))
         this.width = size.width
         this.height = size.height
+      }
+    },
+    updateBaseline: function (id) {
+      if (0 < id) {
+        this.baseline = this.baselineList.find(x => x.id === parseInt(id)).name
       }
     }
   }
