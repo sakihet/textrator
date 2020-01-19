@@ -4,70 +4,155 @@
       <AppHeader
         text="Text Image Generator"
       />
-      <AppInput
-        labelText="text"
-        inputType="text"
-        :value="text"
-        @input="text = $event"
-      />
-      <AppDatalist
-        labelText="font"
-        :datalist="fonts"
-        :value="font"
-        @input="font = $event"
-      />
-      <AppInput
-        labelText="size"
-        inputType="number"
-        :value="size"
-        @input="size = $event"
-      />
-      <AppSelect
-        labelText="baseline"
-        :optionList = "baselineList"
-        @select="updateBaseline($event)"
-      />
-      <AppInput
-        labelText="foreground color"
-        inputType="text"
-        :value="foregroundColor"
-        @input="foregroundColor = $event"
-      />
-      <AppInput
-        labelText="background color"
-        inputType="text"
-        :value="backgroundColor"
-        @input="backgroundColor = $event"
-      />
-      <AppInput
-        labelText="height"
-        inputType="number"
-        :value="height"
-        @input="height = $event"
-      />
-      <AppInput
-        labelText="width"
-        inputType="number"
-        :value="width"
-        @input="width = $event"
-      />
-      <AppSelect
-        labelText="size"
-        :optionList = "sizeList"
-        @select="updateSize($event)"
-      />
-      <AppInput
-        labelText="rotate"
-        inputType="number"
-        :value="angle"
-        @input="angle = $event"
-      />
-      <AppInput
-        labelText="transparent"
-        inputType="checkbox"
-        :value="isTransparent"
-        @change="isTransparent = $event"
-      />
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="text">text</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="text"
+            inputType="text"
+            :value="text"
+            @input="text = $event"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="font">font</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppDatalist
+            labelText="font"
+            :datalist="fonts"
+            :value="font"
+            @input="font = $event"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="text-size">text size</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="text-size"
+            inputType="number"
+            :value="size"
+            @input="size = $event"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="baseline">baseline</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppSelect
+            labelText="baseline"
+            :optionList = "baselineList"
+            @select="updateBaseline($event)"
+          />
+         </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="foreground-color">foreground color</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="foreground-color"
+            inputType="text"
+            :value="foregroundColor"
+            @input="foregroundColor = $event"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label></label>
+        </template>
+        <template v-slot:rightContent>
+
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="background-color">background color</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="background-color"
+            inputType="text"
+            :value="backgroundColor"
+            @input="backgroundColor = $event"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="height">height</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="height"
+            inputType="number"
+            :value="height"
+            @input="height = $event"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="width">width</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="width"
+            inputType="number"
+            :value="width"
+            @input="width = $event"
+          />
+         </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="size">size</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppSelect
+            labelText="size"
+            :optionList = "sizeList"
+            @select="updateSize($event)"
+          />
+        </template>
+      </FormCentered>
+      <FormCentered>
+        <template v-slot:leftContent>
+          <label for="rotate">rotate</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="rotate"
+            inputType="number"
+            :value="angle"
+            @input="angle = $event"
+          />
+        </template>
+      </FormCentered>
+       <FormCentered>
+        <template v-slot:leftContent>
+          <label for="transparent">transparent</label>
+        </template>
+        <template v-slot:rightContent>
+          <AppInput
+            labelText="transparent"
+            inputType="checkbox"
+            :value="isTransparent"
+            @change="isTransparent = $event"
+          />
+        </template>
+      </FormCentered>
       <FormCentered>
         <template v-slot:rightContent>
           <AppAnchor
