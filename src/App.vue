@@ -68,11 +68,15 @@
         :value="isTransparent"
         @change="isTransparent = $event"
       />
-      <AppAnchor
-        :href="dataURL"
-        download="image.png"
-        text="download"
-      />
+      <FormCentered>
+        <template v-slot:rightContent>
+          <AppAnchor
+            :href="dataURL"
+            download="image.png"
+            text="download"
+          />
+        </template>
+      </FormCentered>
       <AppCanvas
         :height="parseInt(height)"
         :width="parseInt(width)"
@@ -100,6 +104,7 @@ import AppDatalist from './components/AppDatalist'
 import AppHeader from './components/AppHeader'
 import AppInput from './components/AppInput'
 import AppSelect from './components/AppSelect'
+import FormCentered from './components/FormCentered'
 import {version} from '../package.json'
 
 export default {
@@ -111,7 +116,8 @@ export default {
     AppDatalist,
     AppHeader,
     AppInput,
-    AppSelect
+    AppSelect,
+    FormCentered
   },
   data () {
     return {
