@@ -87,7 +87,6 @@
         v-on:updated="updateDataURL($event)"
       />
     </div>
-    <hr>
     <a href="https://github.com/sakihet/text-image-generator" target="_blank">github</a>
     <p>version: {{ version }}</p>
   </div>
@@ -207,14 +206,14 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
 #app {
   text-align: center;
 }
 .container {
   display: flex;
   flex-direction: column;
-}
-hr {
-  border: 0.5px inset #ccc;
 }
 </style>
