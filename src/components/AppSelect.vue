@@ -15,7 +15,6 @@
 export default {
   name: 'AppSelect',
   props: {
-    labelText: String,
     optionList: Array
   }
 }

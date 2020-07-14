@@ -10,7 +10,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="text"
             inputType="text"
             :value="text"
             @input="text = $event"
@@ -23,7 +22,6 @@
         </template>
         <template v-slot:rightContent>
           <AppDatalist
-            labelText="font"
             :datalist="fonts"
             :value="font"
             @input="font = $event"
@@ -36,7 +34,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="text-size"
             inputType="number"
             :value="size"
             @input="size = $event"
@@ -49,7 +46,6 @@
         </template>
         <template v-slot:rightContent>
           <AppSelect
-            labelText="baseline"
             :optionList = "baselineList"
             @select="updateBaseline($event)"
           />
@@ -61,8 +57,7 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="foreground-color"
-            inputType="color"
+             inputType="color"
             :value="foregroundColor"
             @input="foregroundColor = $event"
           />
@@ -82,7 +77,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="background-color"
             inputType="color"
             :value="backgroundColor"
             @input="backgroundColor = $event"
@@ -95,7 +89,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="height"
             inputType="number"
             :value="height"
             @input="height = $event"
@@ -108,7 +101,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="width"
             inputType="number"
             :value="width"
             @input="width = $event"
@@ -121,7 +113,6 @@
         </template>
         <template v-slot:rightContent>
           <AppSelect
-            labelText="size"
             :optionList = "sizeList"
             @select="updateSize($event)"
           />
@@ -133,7 +124,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="rotate"
             inputType="number"
             :value="angle"
             @input="angle = $event"
@@ -146,7 +136,6 @@
         </template>
         <template v-slot:rightContent>
           <AppInput
-            labelText="transparent"
             inputType="checkbox"
             :value="isTransparent"
             @change="isTransparent = $event"

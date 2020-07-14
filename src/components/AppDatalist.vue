@@ -13,7 +13,6 @@
 export default {
   name: 'AppDatalist',
   props: {
-    labelText: String,
     inputType: String,
     value: String,
     datalist: Array
