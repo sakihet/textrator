@@ -117,7 +117,7 @@
       </FormCentered>
       <FormCentered>
         <template v-slot:leftContent>
-          <label for="size">size</label>
+          <label for="size">size presets</label>
         </template>
         <template v-slot:rightContent>
           <AppSelect
