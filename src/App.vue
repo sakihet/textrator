@@ -62,7 +62,7 @@
         <template v-slot:rightContent>
           <AppInput
             labelText="foreground-color"
-            inputType="text"
+            inputType="color"
             :value="foregroundColor"
             @input="foregroundColor = $event"
           />
@@ -83,7 +83,7 @@
         <template v-slot:rightContent>
           <AppInput
             labelText="background-color"
-            inputType="text"
+            inputType="color"
             :value="backgroundColor"
             @input="backgroundColor = $event"
           />
