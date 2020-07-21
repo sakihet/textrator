@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
       <AppHeader
-        text="Text Image Generator"
+        text="Textrator"
       />
       <FormCentered>
         <template v-slot:leftContent>

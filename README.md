@@ -1,4 +1,8 @@
-# Text Image Generator
+# Textrator
+
+An open-source text image generator.
+
+"Text Image Generator" was renamed "Textrator".
 
 ## Build Setup
 
