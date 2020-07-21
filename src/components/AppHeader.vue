@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{ text }}</h1>
+    <p>A text image generator</p>
   </div>
 </template>
 
