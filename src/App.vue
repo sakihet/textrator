@@ -165,7 +165,7 @@
         v-on:updated="updateDataURL($event)"
       />
     </div>
-    <a href="https://github.com/sakihet/text-image-generator" target="_blank">github</a>
+    <a href="https://github.com/sakihet/textrator" target="_blank">github</a>
     <p>version: {{ version }}</p>
   </div>
 </template>
