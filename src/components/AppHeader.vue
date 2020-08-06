@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{ text }}</h1>
-    <p>A text image generator</p>
+    <h1>{{ headerText }}</h1>
+    <p>{{ headerDescription }}</p>
   </div>
 </template>
 
@@ -9,7 +9,14 @@
 export default {
   name: 'AppHeader',
   props: {
-    text: String,
+    headerText: {
+      type: String,
+      required: true
+    },
+    headerDescription: {
+      type: String,
+      required: false
+    }
   }
 }
 </script>
