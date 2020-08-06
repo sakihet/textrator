@@ -5,18 +5,13 @@
         headerText="Textrator"
         headerDescription="A text image generator"
       />
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="text">text</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="text"
-            :value="text"
-            @input="text = $event"
-          />
-        </template>
-      </FormCentered>
+      <InputLabeled
+        inputId="imageText"
+        inputType="text"
+        labelName="text"
+        :value="text"
+        @input="text = $event"
+      />
       <FormCentered>
         <template v-slot:leftContent>
           <label for="font">font</label>
@@ -180,6 +175,7 @@ import AppHeader from './components/AppHeader'
 import AppInput from './components/AppInput'
 import AppSelect from './components/AppSelect'
 import FormCentered from './components/FormCentered'
+import InputLabeled from './components/InputLabeled'
 import {version} from '../package.json'
 
 const FONTS = [
@@ -250,7 +246,8 @@ export default {
     AppHeader,
     AppInput,
     AppSelect,
-    FormCentered
+    FormCentered,
+    InputLabeled
   },
   data () {
     return {
