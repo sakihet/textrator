@@ -24,18 +24,13 @@
           />
         </template>
       </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="text-size">text size</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="number"
-            :value="size"
-            @input="size = $event"
-          />
-        </template>
-      </FormCentered>
+      <InputLabeled
+        inputId="imageSize"
+        inputType="number"
+        labelName="size"
+        :value="size"
+        @input="size = $event"
+      />
       <FormCentered>
         <template v-slot:leftContent>
           <label for="baseline">baseline</label>
@@ -47,62 +42,34 @@
           />
          </template>
       </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="foreground-color">foreground color</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-             inputType="color"
-            :value="foregroundColor"
-            @input="foregroundColor = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label></label>
-        </template>
-        <template v-slot:rightContent>
-
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="background-color">background color</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="color"
-            :value="backgroundColor"
-            @input="backgroundColor = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="height">height</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="number"
-            :value="height"
-            @input="height = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="width">width</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="number"
-            :value="width"
-            @input="width = $event"
-          />
-         </template>
-      </FormCentered>
+      <InputLabeled
+        inputId="foregroundColor"
+        inputType="color"
+        labelName="foregroundColor"
+        :value="foregroundColor"
+        @input="foregroundColor = $event"
+      />
+      <InputLabeled
+        inputId="backgroundColor"
+        inputType="color"
+        labelName="backgroundColor"
+        :value="backgroundColor"
+        @input="backgroundColor = $event"
+      />
+      <InputLabeled
+        inputId="height"
+        inputType="number"
+        labelName="height"
+        :value="height"
+        @input="height = $event"
+      />
+      <InputLabeled
+        inputId="width"
+        inputType="number"
+        labelName="width"
+        :value="width"
+        @input="width = $event"
+      />
       <FormCentered>
         <template v-slot:leftContent>
           <label for="size">size presets</label>
@@ -114,30 +81,20 @@
           />
         </template>
       </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="rotate">rotate</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="number"
-            :value="angle"
-            @input="angle = $event"
-          />
-        </template>
-      </FormCentered>
-       <FormCentered>
-        <template v-slot:leftContent>
-          <label for="transparent">transparent</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="checkbox"
-            :value="isTransparent"
-            @change="isTransparent = $event"
-          />
-        </template>
-      </FormCentered>
+      <InputLabeled
+        inputId="angle"
+        inputType="number"
+        labelName="angle"
+        :value="angle"
+        @input="angle = $event"
+      />
+      <InputLabeled
+        inputId="transparent"
+        inputType="checkbox"
+        labelName="transparent"
+        :value="isTransparent"
+        @input="isTransparent = $event"
+      />
       <FormCentered>
         <template v-slot:rightContent>
           <AppAnchor
