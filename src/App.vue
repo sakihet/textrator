@@ -2,8 +2,8 @@
   <div id="app">
     <div class="container">
       <AppHeader
-        headerText="Textrator"
-        headerDescription="A text image generator"
+        :headerText="name"
+        :headerDescription="description"
       />
       <InputLabeled
         inputId="imageText"
@@ -133,6 +133,8 @@ import AppInput from './components/AppInput'
 import AppSelect from './components/AppSelect'
 import FormCentered from './components/FormCentered'
 import InputLabeled from './components/InputLabeled'
+import {name} from '../package.json'
+import {description} from '../package.json'
 import {version} from '../package.json'
 
 const FONTS = [
@@ -208,6 +210,8 @@ export default {
   },
   data () {
     return {
+      name: name[0].toUpperCase() + name.slice(1),
+      description: description,
       text: 'hello.',
       size: 64,
       font: 'sans-serif',
