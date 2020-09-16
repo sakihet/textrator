@@ -45,14 +45,14 @@
       <InputLabeled
         inputId="foregroundColor"
         inputType="color"
-        labelName="foregroundColor"
+        labelName="foreground color"
         :value="foregroundColor"
         @input="foregroundColor = $event"
       />
       <InputLabeled
         inputId="backgroundColor"
         inputType="color"
-        labelName="backgroundColor"
+        labelName="background color"
         :value="backgroundColor"
         @input="backgroundColor = $event"
       />
