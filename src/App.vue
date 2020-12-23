@@ -31,17 +31,12 @@
         :value="size"
         @input="size = $event"
       />
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="baseline">baseline</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppSelect
-            :optionList = "baselineList"
-            @select="updateBaseline($event)"
-          />
-         </template>
-      </FormCentered>
+      <SelectLabeled
+        selectId="baseline"
+        labelName="baseline"
+        :optionList = "baselineList"
+        @select="updateBaseline($event)"
+      />
       <InputLabeled
         inputId="foregroundColor"
         inputType="color"
@@ -70,17 +65,12 @@
         :value="width"
         @input="width = $event"
       />
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="size">size presets</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppSelect
-            :optionList = "sizeList"
-            @select="updateSize($event)"
-          />
-        </template>
-      </FormCentered>
+      <SelectLabeled
+        selectId="sizePresets"
+        labelName="size presets"
+        :optionList="sizeList"
+        @select="updateSize($event)"
+      />
       <InputLabeled
         inputId="angle"
         inputType="number"
@@ -130,9 +120,9 @@ import AppCanvas from './components/AppCanvas'
 import AppDatalist from './components/AppDatalist'
 import AppHeader from './components/AppHeader'
 import AppInput from './components/AppInput'
-import AppSelect from './components/AppSelect'
 import FormCentered from './components/FormCentered'
 import InputLabeled from './components/InputLabeled'
+import SelectLabeled from './components/SelectLabeled'
 import {name} from '../package.json'
 import {description} from '../package.json'
 import {version} from '../package.json'
@@ -204,9 +194,9 @@ export default {
     AppDatalist,
     AppHeader,
     AppInput,
-    AppSelect,
     FormCentered,
-    InputLabeled
+    InputLabeled,
+    SelectLabeled
   },
   data () {
     return {
