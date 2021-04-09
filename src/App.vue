@@ -11,6 +11,11 @@
       :value="image.text"
       @input="image.text = $event"
     />
+    <AppAnchor
+      :href="dataURL"
+      download="image.png"
+      text="download"
+    />
     <AppCanvas
       :height="parseInt(image.size.height)"
       :width="parseInt(image.size.width)"
@@ -30,6 +35,7 @@
 
 <script>
 import { name, description, version } from '../package.json'
+import AppAnchor from './components/AppAnchor'
 import AppCanvas from './components/AppCanvas'
 import AppHeader from './components/AppHeader'
 import InputLabeled from './components/InputLabeled'
@@ -37,6 +43,7 @@ import InputLabeled from './components/InputLabeled'
 export default {
   name: 'App',
   components: {
+    AppAnchor,
     AppCanvas,
     AppHeader,
     InputLabeled
@@ -44,6 +51,7 @@ export default {
   data () {
     return {
       name: name[0].toUpperCase() + name.slice(1),
+      dataURL: '',
       description: description,
       version: version,
       image: {
