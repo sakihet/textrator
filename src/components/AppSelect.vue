@@ -1,6 +1,9 @@
 <template>
   <div>
-    <select @change="$emit('select', $event.target.value)">
+    <select
+      @change="$emit('select', $event.target.value)"
+      :id="id"
+    >
       <option selected>-</option>
       <option
         v-for="optionItem in optionList"
@@ -15,7 +18,10 @@
 export default {
   name: 'AppSelect',
   props: {
-    optionList: Array
+    optionList: Array,
+    id: {
+      type: String
+    }
   }
 }
 </script>
