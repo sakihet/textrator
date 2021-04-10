@@ -11,6 +11,58 @@
       :value="image.text"
       @input="image.text = $event"
     />
+    <!-- TODO: font -->
+    <InputLabeled
+      inputId="imageSize"
+      inputType="number"
+      labelName="size"
+      :value="image.textSize"
+      @input="image.textSize = $event"
+    />
+    <!-- TODO: baseline -->
+    <InputLabeled
+      inputId="foregroundColor"
+      inputType="color"
+      labelName="foreground color"
+      :value="image.color.foreground"
+      @input="image.color.foreground = $event"
+    />
+    <InputLabeled
+      inputId="backgrounColor"
+      inputType="color"
+      labelName="background color"
+      :value="image.color.background"
+      @input="image.color.background = $event"
+    />
+    <InputLabeled
+      inputId="height"
+      inputType="number"
+      labelName="height"
+      :value="image.size.height"
+      @input="image.size.height = $event"
+    />
+    <InputLabeled
+      inputId="width"
+      inputType="number"
+      labelName="width"
+      :value="image.size.width"
+      @input="image.size.width = $event"
+    />
+    <!-- size presets -->
+    <InputLabeled
+      inputId="angle"
+      inputType="number"
+      labelName="angle"
+      :value="image.angle"
+      @input="image.angle = $event"
+    />
+    <InputLabeled
+      inputId="transparent"
+      inputType="checkbox"
+      labelName="transparent"
+      :value="image.isTransparent"
+      @input="image.isTransparent = $event"
+    />
     <AppAnchor
       :href="dataURL"
       download="image.png"
