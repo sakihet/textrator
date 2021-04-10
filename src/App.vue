@@ -19,7 +19,12 @@
       :value="image.textSize"
       @input="image.textSize = $event"
     />
-    <!-- TODO: baseline -->
+    <SelectLabeled
+      selectId="baseline"
+      labelName="baseline"
+      :optionList="baselineList"
+      @select="updateBaseline($event)"
+    />
     <InputLabeled
       inputId="foregroundColor"
       inputType="color"
@@ -48,7 +53,12 @@
       :value="image.size.width"
       @input="image.size.width = $event"
     />
-    <!-- size presets -->
+    <SelectLabeled
+      selectId="sizePresets"
+      labelName="size presets"
+      :optionList="sizeList"
+      @select="updateSize($event)"
+    />
     <InputLabeled
       inputId="angle"
       inputType="number"
@@ -81,6 +91,7 @@
       :isTransparent="image.isTransparent"
       v-on:updated="updateDataURL($event)"
     />
+    <a href="https://github.com/sakihet/textrator" target="_blank">github</a>
     <p>version: {{ version }}</p>
   </div>
 </template>
@@ -91,6 +102,55 @@ import AppAnchor from './components/AppAnchor'
 import AppCanvas from './components/AppCanvas'
 import AppHeader from './components/AppHeader'
 import InputLabeled from './components/InputLabeled'
+import SelectLabeled from './components/SelectLabeled'
+
+const BASELINES = [
+  {
+    id: 1,
+    name: 'top'
+  },
+  {
+    id: 2,
+    name: 'hanging'
+  },
+  {
+    id: 3,
+    name: 'middle'
+  },
+  {
+    id: 4,
+    name: 'alphabetic'
+  },
+  {
+    id: 5,
+    name: 'ideographic'
+  },
+  {
+    id: 6,
+    name: 'bottom'
+  }
+]
+
+const SIZE_PRESETS = [
+  {
+    id: 1,
+    name: '32 x 32',
+    height: 32,
+    width: 32
+  },
+  {
+    id: 2,
+    name: '128 x 128',
+    height: 128,
+    width: 128
+  },
+  {
+    id: 3,
+    name: '256 x 256',
+    height: 256,
+    width: 256
+  }
+]
 
 export default {
   name: 'App',
@@ -98,7 +158,8 @@ export default {
     AppAnchor,
     AppCanvas,
     AppHeader,
-    InputLabeled
+    InputLabeled,
+    SelectLabeled
   },
   data () {
     return {
@@ -121,12 +182,26 @@ export default {
         },
         text: 'hello.',
         textSize: 64
-      }
+      },
+      sizeList: SIZE_PRESETS,
+      baselineList: BASELINES
     }
   },
   methods: {
+    updateBaseline: function (id) {
+      if (id > 0) {
+        this.image.baseline = this.baselineList.find(x => x.id === parseInt(id)).name
+      }
+    },
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
+    },
+    updateSize: function (sizeId) {
+      if (sizeId > 0) {
+        const size = this.sizeList.find(x => x.id === parseInt(sizeId))
+        this.image.size.width = size.width
+        this.image.size.height = size.height
+      }
     }
   }
 }
