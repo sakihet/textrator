@@ -11,7 +11,13 @@
       :value="image.text"
       @input="image.text = $event"
     />
-    <!-- TODO: font -->
+    <DatalistLabeled
+      selectId="font"
+      labelName="font"
+      :datalistList="fontList"
+      :value="image.font"
+      @input="updateFont($event.target.value)"
+    />
     <InputLabeled
       inputId="imageSize"
       inputType="number"
@@ -101,6 +107,7 @@ import { name, description, version } from '../package.json'
 import AppAnchor from './components/AppAnchor'
 import AppCanvas from './components/AppCanvas'
 import AppHeader from './components/AppHeader'
+import DatalistLabeled from './components/DatalistLabeled'
 import InputLabeled from './components/InputLabeled'
 import SelectLabeled from './components/SelectLabeled'
 
@@ -131,6 +138,16 @@ const BASELINES = [
   }
 ]
 
+const FONTS = [
+  'arial',
+  'verdana',
+  'tahoma',
+  'georgia',
+  'times new roman',
+  'courier new',
+  'andale mono'
+]
+
 const SIZE_PRESETS = [
   {
     id: 1,
@@ -158,6 +175,7 @@ export default {
     AppAnchor,
     AppCanvas,
     AppHeader,
+    DatalistLabeled,
     InputLabeled,
     SelectLabeled
   },
@@ -184,7 +202,8 @@ export default {
         textSize: 64
       },
       sizeList: SIZE_PRESETS,
-      baselineList: BASELINES
+      baselineList: BASELINES,
+      fontList: FONTS
     }
   },
   methods: {
@@ -195,6 +214,12 @@ export default {
     },
     updateDataURL: function (dataURL) {
       this.dataURL = dataURL
+    },
+    updateFont: function (font) {
+      if (font) {
+        const newFont = this.fontList.find(x => x === font)
+        this.image.font = newFont
+      }
     },
     updateSize: function (sizeId) {
       if (sizeId > 0) {
