@@ -156,6 +156,8 @@ export default {
     updateBaseline: function (id) {
       if (id > 0) {
         this.image.baseline = this.baselineList.find(x => x.id === parseInt(id)).name
+      } else {
+        this.image.baseline = 'middle'
       }
     },
     updateDataURL: function (dataURL) {
@@ -172,6 +174,9 @@ export default {
         const size = this.sizeList.find(x => x.id === parseInt(sizeId))
         this.image.size.width = size.width
         this.image.size.height = size.height
+      } else {
+        this.image.size.width = 256
+        this.image.size.height = 256
       }
     }
   }
