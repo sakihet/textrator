@@ -97,8 +97,11 @@
       :isTransparent="image.isTransparent"
       v-on:updated="updateDataURL($event)"
     />
-    <a href="https://github.com/sakihet/textrator" target="_blank">github</a>
-    <p>version: {{ version }}</p>
+    <footer>
+      <a href="https://github.com/sakihet/textrator" target="_blank">Github</a>
+      <p>Released under the MIT License</p>
+      <p>version: {{ version }} ©︎ 2018-2021 <a href="https://sakih.net" target="_blank">saki</a></p>
+    </footer>
   </div>
 </template>
 
@@ -178,5 +181,8 @@ export default {
 <style>
 #app {
   text-align: center;
+}
+footer {
+  color: #757575;
 }
 </style>
