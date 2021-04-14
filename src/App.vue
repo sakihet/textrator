@@ -184,6 +184,19 @@ export default {
 </script>
 
 <style>
+/* reset */
+* {
+  box-sizing: border-box;
+}
+body,
+h1,
+p {
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+}
+
 #app {
   text-align: center;
 }

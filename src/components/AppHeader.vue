@@ -22,4 +22,8 @@ export default {
 </script>
 
 <style scoped>
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
 </style>
