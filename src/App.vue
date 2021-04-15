@@ -25,12 +25,6 @@
       :value="image.textSize"
       @input="image.textSize = $event"
     />
-    <SelectLabeled
-      selectId="baseline"
-      labelName="baseline"
-      :optionList="baselineList"
-      @select="updateBaseline($event)"
-    />
     <InputLabeled
       inputId="foregroundColor"
       inputType="color"
@@ -64,6 +58,12 @@
       labelName="size presets"
       :optionList="sizeList"
       @select="updateSize($event)"
+    />
+    <SelectLabeled
+      selectId="baseline"
+      labelName="baseline"
+      :optionList="baselineList"
+      @select="updateBaseline($event)"
     />
     <InputLabeled
       inputId="angle"
