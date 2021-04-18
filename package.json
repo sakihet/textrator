@@ -1,6 +1,6 @@
 {
   "name": "textrator",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "A text image generator",
   "private": true,
   "scripts": {
