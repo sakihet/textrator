@@ -3,8 +3,8 @@
     <input
       :id="inputId"
       type="checkbox"
-      :value="value"
-      @change="$emit('change', $event.target.value)"
+      :checked="isChecked"
+      @change="$emit('change', $event.target.checked)"
     >
   </div>
 </template>
@@ -17,8 +17,9 @@ export default {
       type: String,
       required: true
     },
-    value: {
-      type: Boolean
+    isChecked: {
+      type: Boolean,
+      required: true
     }
   },
   emits: [
