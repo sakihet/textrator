@@ -72,12 +72,11 @@
       :value="image.angle"
       @input="image.angle = $event"
     />
-    <InputLabeled
+    <InputCheckboxLabeled
       inputId="transparent"
-      inputType="checkbox"
       labelName="transparent"
-      :value="image.isTransparent"
-      @input="image.isTransparent = $event"
+      :isChecked="image.isTransparent"
+      @change="image.isTransparent = $event"
     />
     <AppAnchor
       :href="dataURL"
@@ -112,6 +111,7 @@ import AppAnchor from './components/AppAnchor'
 import AppCanvas from './components/AppCanvas'
 import AppHeader from './components/AppHeader'
 import DatalistLabeled from './components/DatalistLabeled'
+import InputCheckboxLabeled from './components/InputCheckboxLabeled'
 import InputLabeled from './components/InputLabeled'
 import SelectLabeled from './components/SelectLabeled'
 
@@ -122,6 +122,7 @@ export default {
     AppCanvas,
     AppHeader,
     DatalistLabeled,
+    InputCheckboxLabeled,
     InputLabeled,
     SelectLabeled
   },
