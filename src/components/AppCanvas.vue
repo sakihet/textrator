@@ -14,6 +14,10 @@
       {{ font }}
       {{ baseline }}
       {{ isTransparent }}
+      {{ blur }}
+      {{ contrast }}
+      {{ grayscale }}
+      {{ hueRotate }}
       {{ angle }}
     </div>
   </div>
@@ -32,7 +36,11 @@ export default {
     font: String,
     baseline: String,
     angle: Number,
-    isTransparent: Boolean
+    isTransparent: Boolean,
+    blur: Number,
+    contrast: Number,
+    grayscale: Number,
+    hueRotate: Number
   },
   mounted () {
     this.draw()
@@ -56,6 +64,7 @@ export default {
       ctx.save()
       ctx.translate(this.width / 2, this.height / 2)
       ctx.rotate(this.angle * Math.PI / 180)
+      ctx.filter = `blur(${this.blur}px) contrast(${this.contrast}%) grayscale(${this.grayscale}%) hue-rotate(${this.hueRotate}deg)`
       ctx.fillText(this.text, 0, 0)
       ctx.restore()
     },

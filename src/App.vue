@@ -78,6 +78,34 @@
       :isChecked="image.isTransparent"
       @change="image.isTransparent = $event"
     />
+    <InputLabeled
+      inputId="filterBlur"
+      inputType="number"
+      labelName="blur"
+      :value="image.filter.blur"
+      @input="image.filter.blur = $event"
+    />
+    <InputLabeled
+      inputId="filterContrast"
+      inputType="number"
+      labelName="contrast"
+      :value="image.filter.contrast"
+      @input="image.filter.contrast = $event"
+    />
+    <InputLabeled
+      inputId="filterGrayscale"
+      inputType="number"
+      labelName="grayscale"
+      :value="image.filter.grayscale"
+      @input="image.filter.grayscale = $event"
+    />
+    <InputLabeled
+      inputId="filterHueRotate"
+      inputType="number"
+      labelName="hue rotate"
+      :value="image.filter.hueRotate"
+      @input="image.filter.hueRotate = $event"
+    />
     <AppAnchor
       :href="dataURL"
       download="image.png"
@@ -94,6 +122,10 @@
       :baseline="image.baseline"
       :angle="parseInt(image.angle)"
       :isTransparent="image.isTransparent"
+      :blur="image.filter.blur"
+      :contrast="image.filter.contrast"
+      :grayscale="image.filter.grayscale"
+      :hueRotate="image.filter.hueRotate"
       v-on:updated="updateDataURL($event)"
     />
     <footer>
@@ -138,6 +170,12 @@ export default {
         color: {
           foreground: '#000000',
           background: '#ffffff'
+        },
+        filter: {
+          blur: 0,
+          contrast: 100,
+          grayscale: 0,
+          hueRotate: 0
         },
         font: 'sans-serif',
         isTransparent: false,
