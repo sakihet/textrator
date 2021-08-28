@@ -1,0 +1,6 @@
+# ref: https://dependabot.com/docs/config-file/
+version: 1
+update_configs:
+  - pacakge_manager: "javascript"
+    directory: "/"
+    update_schedule: "live"
