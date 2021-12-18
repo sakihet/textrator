@@ -1,81 +1,175 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { name, description, version } from '../package.json'
+import { ref } from 'vue'
+import AppCanvas from './components/AppCanvas.vue'
+
+const text = ref('hello')
+const height = ref(256)
+const width = ref(256)
+const fgColor = ref('#000000')
+const bgColor = ref('#ffffff')
+const dataURL = ref('')
+const updateDataURL = (data) => {
+  dataURL.value = data
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="flex-column align-center">
+    <header class="padding-top-2 padding-bottom-2">
+      <h1>{{ name }}</h1>
+      <p>{{ description }}</p>
+    </header>
+    <main class="flex-column">
+      <div class="flex-row">
+        <div class="flex-auto"></div>
+        <div class="flex-auto flex-row min-w-256 max-w-256">
+          <form>
+            <div class="flex-row">
+              <label
+                for="imageText"
+                class="min-w-128 align-right"
+              >
+                text
+              </label>
+              <input
+                type="text"
+                v-model="text"
+                id="imageText"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageHeight"
+                class="min-w-128 align-right"
+              >
+                height
+              </label>
+              <input
+                type="number"
+                v-model="height"
+                id="imageHeight"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageWidth"
+                class="min-w-128 align-right"
+              >
+                width
+              </label>
+              <input
+                type="number"
+                v-model="width"
+                id="imageWidth"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageFgColor"
+                class="min-w-128 align-right"
+              >
+                foreground color
+              </label>
+              <input
+                type="color"
+                v-model="fgColor"
+                id="imageFgColor"
+                class="min-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageBgColor"
+                class="min-w-128 align-right"
+              >
+                background color
+              </label>
+              <input
+                type="color"
+                v-model="bgColor"
+                id="imageBgColor"
+                class="min-w-128"
+              >
+            </div>
+            <a
+              :href="dataURL"
+              download="image.png"
+            >
+              download
+            </a>
+          </form>
+        </div>
+        <div class="flex-auto"></div>
+      </div>
+      <div>
+        <AppCanvas
+          :text="text"
+          :height="height"
+          :width="width"
+          :fgColor="fgColor"
+          :bgColor="bgColor"
+          @updated="updateDataURL($event)"
+        />
+      </div>
+    </main>
+    <footer class="appFooter">
+      Released under the MIT License
+      <br>
+      version: {{ version }} ©︎ 2018-2021 <a href="https://sakih.net" target="_blank">saki</a>
+    </footer>
+  </div>
 </template>
 
 <style>
 @import './assets/base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
 }
-
-header {
-  line-height: 1.5;
+.padding-left-1 {
+  padding-left: var(--space-1);
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.padding-top-2 {
+  padding-top: var(--space-2);
 }
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+.padding-bottom-2 {
+  padding-bottom: var(--space-2);
 }
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-auto {
+  flex: auto;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
+}
+.min-w-128 {
+  min-width: 128px;
+}
+.max-w-128 {
+  max-width: 128px;
+}
+.min-w-256 {
+  min-width: 256px;
+}
+.max-w-256 {
+  max-width: 256px;
 }
 </style>
