@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import AppCanvas from './components/AppCanvas.vue'
 
 const text = ref('hello')
+const size = ref(64)
 const height = ref(256)
 const width = ref(256)
 const fgColor = ref('#000000')
@@ -36,6 +37,20 @@ const updateDataURL = (data) => {
                 type="text"
                 v-model="text"
                 id="imageText"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageSize"
+                class="min-w-128 align-right"
+              >
+                size
+              </label>
+              <input
+                type="number"
+                v-model="size"
+                id="imageSize"
                 class="max-w-128"
               >
             </div>
@@ -108,6 +123,7 @@ const updateDataURL = (data) => {
       <div>
         <AppCanvas
           :text="text"
+          :size="size"
           :height="height"
           :width="width"
           :fgColor="fgColor"

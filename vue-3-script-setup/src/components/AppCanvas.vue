@@ -4,6 +4,9 @@ const props = defineProps({
   text: {
     type: String
   },
+  size: {
+    type: Number
+  },
   height: {
     type: Number
   },
@@ -33,7 +36,7 @@ const draw = () => {
   const cv = document.querySelector('#cv')
   const ctx = cv.getContext('2d')
   ctx.clearRect(0, 0, props.width, props.height)
-  ctx.font = '50px serif'
+  ctx.font = `${props.size}px serif`
   ctx.fillStyle = props.bgColor
   ctx.fillRect(0, 0, props.width, props.height)
   ctx.fillStyle = props.fgColor
