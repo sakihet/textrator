@@ -18,6 +18,9 @@ const props = defineProps({
   },
   bgColor: {
     type: String
+  },
+  isTransparent: {
+    type: Boolean
   }
 })
 const emits = defineEmits(['updated'])
@@ -37,8 +40,12 @@ const draw = () => {
   const ctx = cv.getContext('2d')
   ctx.clearRect(0, 0, props.width, props.height)
   ctx.font = `${props.size}px serif`
-  ctx.fillStyle = props.bgColor
-  ctx.fillRect(0, 0, props.width, props.height)
+  if (props.isTransparent) {
+    ctx.clearRect(0, 0, props.width, props.height)
+  } else {
+    ctx.fillStyle = props.bgColor
+    ctx.fillRect(0, 0, props.width, props.height)
+  }
   ctx.fillStyle = props.fgColor
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'

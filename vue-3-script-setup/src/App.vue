@@ -9,6 +9,7 @@ const height = ref(256)
 const width = ref(256)
 const fgColor = ref('#000000')
 const bgColor = ref('#ffffff')
+const isTransparent = ref(false)
 const dataURL = ref('')
 const updateDataURL = (data) => {
   dataURL.value = data
@@ -110,6 +111,20 @@ const updateDataURL = (data) => {
                 class="min-w-128"
               >
             </div>
+            <div class="flex-row">
+              <label
+                for="imageIsTransparent"
+                class="min-w-128 align-right"
+              >
+                transparent
+              </label>
+              <input
+                type="checkbox"
+                v-model="isTransparent"
+                id="imageIsTransparent"
+                class=""
+              >
+            </div>
             <a
               :href="dataURL"
               download="image.png"
@@ -128,6 +143,7 @@ const updateDataURL = (data) => {
           :width="width"
           :fgColor="fgColor"
           :bgColor="bgColor"
+          :isTransparent="isTransparent"
           @updated="updateDataURL($event)"
         />
       </div>
