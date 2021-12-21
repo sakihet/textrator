@@ -149,6 +149,8 @@ const updateDataURL = (data) => {
       </div>
     </main>
     <footer class="appFooter">
+      <a href="https://github.com/sakihet/textrator" target="_blank">Github</a>
+      <br>
       Released under the MIT License
       <br>
       version: {{ version }} ©︎ 2018-2021 <a href="https://sakih.net" target="_blank">saki</a>
