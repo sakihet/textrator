@@ -10,6 +10,10 @@ const width = ref(256)
 const fgColor = ref('#000000')
 const bgColor = ref('#ffffff')
 const isTransparent = ref(false)
+const blur = ref(0)
+const contrast = ref(100)
+const grayscale = ref(0)
+const hueRotate = ref(0)
 const dataURL = ref('')
 const updateDataURL = (data) => {
   dataURL.value = data
@@ -125,6 +129,62 @@ const updateDataURL = (data) => {
                 class=""
               >
             </div>
+            <div class="flex-row">
+              <label
+                for="imageBlur"
+                class="min-w-128 align-right"
+              >
+                blur
+              </label>
+              <input
+                type="number"
+                v-model="blur"
+                id="imageBlur"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageContrast"
+                class="min-w-128 align-right"
+              >
+                contrast
+              </label>
+              <input
+                type="number"
+                v-model="contrast"
+                id="imageContrast"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageGrayscale"
+                class="min-w-128 align-right"
+              >
+                grayscale
+              </label>
+              <input
+                type="number"
+                v-model="grayscale"
+                id="imageGrayscale"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageHueRotate"
+                class="min-w-128 align-right"
+              >
+                hur rotate
+              </label>
+              <input
+                type="number"
+                v-model="hueRotate"
+                id="imageHueRotate"
+                class="max-w-128"
+              >
+            </div>
             <a
               :href="dataURL"
               download="image.png"
@@ -144,6 +204,10 @@ const updateDataURL = (data) => {
           :fgColor="fgColor"
           :bgColor="bgColor"
           :isTransparent="isTransparent"
+          :blur="blur"
+          :contrast="contrast"
+          :grayscale="grayscale"
+          :hueRotate="hueRotate"
           @updated="updateDataURL($event)"
         />
       </div>

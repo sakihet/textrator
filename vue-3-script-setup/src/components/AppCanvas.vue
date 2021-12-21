@@ -21,6 +21,18 @@ const props = defineProps({
   },
   isTransparent: {
     type: Boolean
+  },
+  blur: {
+    type: Number
+  },
+  contrast: {
+    type: Number
+  },
+  grayscale: {
+    type: Number
+  },
+  hueRotate: {
+    type: Number
   }
 })
 const emits = defineEmits(['updated'])
@@ -51,6 +63,7 @@ const draw = () => {
   ctx.textBaseline = 'middle'
   ctx.save()
   ctx.translate(props.width / 2, props.height / 2)
+  ctx.filter = `blur(${props.blur}px) contrast(${props.contrast}%) grayscale(${props.grayscale}%) hue-rotate(${props.hueRotate}deg)`
   ctx.fillText(props.text, 0, 0)
   ctx.restore()
 }
