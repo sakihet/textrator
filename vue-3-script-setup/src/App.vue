@@ -10,6 +10,7 @@ const width = ref(256)
 const fgColor = ref('#000000')
 const bgColor = ref('#ffffff')
 const isTransparent = ref(false)
+const angle = ref(0)
 const blur = ref(0)
 const contrast = ref(100)
 const grayscale = ref(0)
@@ -131,6 +132,20 @@ const updateDataURL = (data) => {
             </div>
             <div class="flex-row">
               <label
+                for="imageAngle"
+                class="min-w-128 align-right"
+              >
+                angle
+              </label>
+              <input
+                type="number"
+                v-model="angle"
+                id="imageAngle"
+                class="max-w-128"
+              >
+            </div>
+            <div class="flex-row">
+              <label
                 for="imageBlur"
                 class="min-w-128 align-right"
               >
@@ -204,6 +219,7 @@ const updateDataURL = (data) => {
           :fgColor="fgColor"
           :bgColor="bgColor"
           :isTransparent="isTransparent"
+          :angle="angle"
           :blur="blur"
           :contrast="contrast"
           :grayscale="grayscale"
