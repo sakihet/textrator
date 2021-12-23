@@ -16,6 +16,32 @@ const contrast = ref(100)
 const grayscale = ref(0)
 const hueRotate = ref(0)
 const dataURL = ref('')
+const BASELINES = [
+  {
+    id: 1,
+    name: 'top'
+  },
+  {
+    id: 2,
+    name: 'hanging'
+  },
+  {
+    id: 3,
+    name: 'middle'
+  },
+  {
+    id: 4,
+    name: 'alphabetic'
+  },
+  {
+    id: 5,
+    name: 'ideographic'
+  },
+  {
+    id: 6,
+    name: 'bottom'
+  }
+]
 const updateDataURL = (data) => {
   dataURL.value = data
 }
@@ -129,6 +155,18 @@ const updateDataURL = (data) => {
                 id="imageIsTransparent"
                 class=""
               >
+            </div>
+            <div class="flex-row">
+              <label
+                class="min-w-128 align-right"
+              >
+                baseline
+              </label>
+              <select
+                class="min-w-128"
+              >
+                <option v-for="baseline in BASELINES">{{ baseline.name }}</option>
+              </select>
             </div>
             <div class="flex-row">
               <label
