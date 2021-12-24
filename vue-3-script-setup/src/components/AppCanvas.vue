@@ -22,6 +22,9 @@ const props = defineProps({
   isTransparent: {
     type: Boolean
   },
+  baseline: {
+    type: String
+  },
   angle: {
     type: Number
   },
@@ -63,7 +66,7 @@ const draw = () => {
   }
   ctx.fillStyle = props.fgColor
   ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
+  ctx.textBaseline = props.baseline
   ctx.save()
   ctx.translate(props.width / 2, props.height / 2)
   ctx.rotate(props.angle * Math.PI / 180)

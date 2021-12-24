@@ -10,6 +10,7 @@ const width = ref(256)
 const fgColor = ref('#000000')
 const bgColor = ref('#ffffff')
 const isTransparent = ref(false)
+const baseline = ref('middle')
 const angle = ref(0)
 const blur = ref(0)
 const contrast = ref(100)
@@ -164,8 +165,14 @@ const updateDataURL = (data) => {
               </label>
               <select
                 class="min-w-128"
+                v-model="baseline"
               >
-                <option v-for="baseline in BASELINES">{{ baseline.name }}</option>
+                <option
+                  v-for="baseline in BASELINES"
+                  :value="baseline.name"
+                >
+                  {{ baseline.name }}
+                </option>
               </select>
             </div>
             <div class="flex-row">
@@ -257,6 +264,7 @@ const updateDataURL = (data) => {
           :fgColor="fgColor"
           :bgColor="bgColor"
           :isTransparent="isTransparent"
+          :baseline="baseline"
           :angle="angle"
           :blur="blur"
           :contrast="contrast"
