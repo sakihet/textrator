@@ -2,6 +2,7 @@
 import { name, description, version } from '../package.json'
 import { ref } from 'vue'
 import AppCanvas from './components/AppCanvas.vue'
+import { BASELINES } from './constants'
 
 const text = ref('hello')
 const size = ref(64)
@@ -17,32 +18,6 @@ const contrast = ref(100)
 const grayscale = ref(0)
 const hueRotate = ref(0)
 const dataURL = ref('')
-const BASELINES = [
-  {
-    id: 1,
-    name: 'top'
-  },
-  {
-    id: 2,
-    name: 'hanging'
-  },
-  {
-    id: 3,
-    name: 'middle'
-  },
-  {
-    id: 4,
-    name: 'alphabetic'
-  },
-  {
-    id: 5,
-    name: 'ideographic'
-  },
-  {
-    id: 6,
-    name: 'bottom'
-  }
-]
 const updateDataURL = (data) => {
   dataURL.value = data
 }
@@ -168,10 +143,10 @@ const updateDataURL = (data) => {
                 v-model="baseline"
               >
                 <option
-                  v-for="baseline in BASELINES"
-                  :value="baseline.name"
+                  v-for="b in BASELINES"
+                  :value="b"
                 >
-                  {{ baseline.name }}
+                  {{ b }}
                 </option>
               </select>
             </div>
