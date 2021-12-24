@@ -4,6 +4,9 @@ const props = defineProps({
   text: {
     type: String
   },
+  font: {
+    type: String
+  },
   size: {
     type: Number
   },
@@ -57,7 +60,7 @@ const draw = () => {
   const cv = document.querySelector('#cv')
   const ctx = cv.getContext('2d')
   ctx.clearRect(0, 0, props.width, props.height)
-  ctx.font = `${props.size}px serif`
+  ctx.font = `${props.size}px ${props.font}`
   if (props.isTransparent) {
     ctx.clearRect(0, 0, props.width, props.height)
   } else {

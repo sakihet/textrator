@@ -2,9 +2,10 @@
 import { name, description, version } from '../package.json'
 import { ref } from 'vue'
 import AppCanvas from './components/AppCanvas.vue'
-import { BASELINES } from './constants'
+import { BASELINES, FONTS } from './constants'
 
 const text = ref('hello')
+const font = ref('times new roman')
 const size = ref(64)
 const height = ref(256)
 const width = ref(256)
@@ -47,6 +48,24 @@ const updateDataURL = (data) => {
                 id="imageText"
                 class="max-w-128"
               >
+            </div>
+            <div class="flex-row">
+              <label
+                class="min-w-128 align-right"
+              >
+                font
+              </label>
+              <select
+                class="min-w-128"
+                v-model="font"
+              >
+                <option
+                  v-for="f in FONTS"
+                  :value="f"
+                >
+                  {{ f }}
+                </option>
+              </select>
             </div>
             <div class="flex-row">
               <label
@@ -233,6 +252,7 @@ const updateDataURL = (data) => {
       <div>
         <AppCanvas
           :text="text"
+          :font="font"
           :size="size"
           :height="height"
           :width="width"
