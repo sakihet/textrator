@@ -2,7 +2,7 @@
 import { name, description, version } from '../package.json'
 import { ref } from 'vue'
 import AppCanvas from './components/AppCanvas.vue'
-import { BASELINES, FONTS } from './constants'
+import { BASELINES, FONTS, SIZE_PRESETS } from './constants'
 
 const text = ref('hello')
 const font = ref('times new roman')
@@ -21,6 +21,13 @@ const hueRotate = ref(0)
 const dataURL = ref('')
 const updateDataURL = (data) => {
   dataURL.value = data
+}
+const updateSize = (id) => {
+  if (id > 0) {
+    const s = SIZE_PRESETS.find(x => x.id === parseInt(id))
+    height.value = s.height
+    width.value = s.width
+  }
 }
 </script>
 
@@ -108,6 +115,25 @@ const updateDataURL = (data) => {
                 id="imageWidth"
                 class="max-w-128"
               >
+            </div>
+            <div class="flex-row">
+              <label
+                class="min-w-128 align-right"
+              >
+                size presets
+              </label>
+              <select
+                class="min-w-128"
+                @change="updateSize($event.target.value)"
+              >
+                <option selected>-</option>
+                <option
+                  v-for="s in SIZE_PRESETS"
+                  :value="s.id"
+                >
+                  {{ s.name }}
+                </option>
+              </select>
             </div>
             <div class="flex-row">
               <label
