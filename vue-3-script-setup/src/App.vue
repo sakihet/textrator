@@ -22,6 +22,9 @@ const dataURL = ref('')
 const updateDataURL = (data) => {
   dataURL.value = data
 }
+const capitalize = (text) => {
+  return text[0].toUpperCase() + text.substring(1)
+}
 const updateSize = (id) => {
   if (id > 0) {
     const s = SIZE_PRESETS.find(x => x.id === parseInt(id))
@@ -34,7 +37,7 @@ const updateSize = (id) => {
 <template>
   <div class="flex-column align-center">
     <header class="padding-top-2 padding-bottom-2">
-      <h1>{{ name }}</h1>
+      <h1>{{ capitalize(name) }}</h1>
       <p>{{ description }}</p>
     </header>
     <main class="flex-column">
