@@ -61,11 +61,13 @@ const updateSize = (id) => {
             </div>
             <div class="flex-row">
               <label
+                for="imageFont"
                 class="min-w-128 align-right"
               >
                 font
               </label>
               <select
+                id="imageFont"
                 class="min-w-128"
                 v-model="font"
               >
@@ -121,11 +123,13 @@ const updateSize = (id) => {
             </div>
             <div class="flex-row">
               <label
+                for="sizePreset"
                 class="min-w-128 align-right"
               >
                 size presets
               </label>
               <select
+                id="sizePreset"
                 class="min-w-128"
                 @change="updateSize($event.target.value)"
               >
@@ -183,10 +187,12 @@ const updateSize = (id) => {
             <div class="flex-row">
               <label
                 class="min-w-128 align-right"
+                for="baseline"
               >
                 baseline
               </label>
               <select
+                id="baseline"
                 class="min-w-128"
                 v-model="baseline"
               >
