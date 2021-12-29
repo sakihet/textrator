@@ -56,7 +56,7 @@ const updateSize = (id) => {
                 type="text"
                 v-model="text"
                 id="imageText"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -68,7 +68,7 @@ const updateSize = (id) => {
               </label>
               <select
                 id="imageFont"
-                class="min-w-128"
+                class="min-w-128 h5"
                 v-model="font"
               >
                 <option
@@ -90,7 +90,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="size"
                 id="imageSize"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -104,7 +104,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="height"
                 id="imageHeight"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -118,7 +118,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="width"
                 id="imageWidth"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -130,7 +130,7 @@ const updateSize = (id) => {
               </label>
               <select
                 id="sizePreset"
-                class="min-w-128"
+                class="min-w-128 h5"
                 @change="updateSize($event.target.value)"
               >
                 <option selected>-</option>
@@ -153,7 +153,7 @@ const updateSize = (id) => {
                 type="color"
                 v-model="fgColor"
                 id="imageFgColor"
-                class="min-w-128"
+                class="min-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -167,7 +167,7 @@ const updateSize = (id) => {
                 type="color"
                 v-model="bgColor"
                 id="imageBgColor"
-                class="min-w-128"
+                class="min-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -181,7 +181,7 @@ const updateSize = (id) => {
                 type="checkbox"
                 v-model="isTransparent"
                 id="imageIsTransparent"
-                class=""
+                class="h5"
               >
             </div>
             <div class="flex-row">
@@ -193,7 +193,7 @@ const updateSize = (id) => {
               </label>
               <select
                 id="baseline"
-                class="min-w-128"
+                class="min-w-128 h5"
                 v-model="baseline"
               >
                 <option
@@ -215,7 +215,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="angle"
                 id="imageAngle"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -229,7 +229,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="blur"
                 id="imageBlur"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -243,7 +243,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="contrast"
                 id="imageContrast"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -257,7 +257,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="grayscale"
                 id="imageGrayscale"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <div class="flex-row">
@@ -271,7 +271,7 @@ const updateSize = (id) => {
                 type="number"
                 v-model="hueRotate"
                 id="imageHueRotate"
-                class="max-w-128"
+                class="max-w-128 h5"
               >
             </div>
             <a
@@ -361,5 +361,11 @@ const updateSize = (id) => {
 }
 .max-w-256 {
   max-width: 256px;
+}
+.h4 {
+  height: 1rem;
+}
+.h5 {
+  height: 1.25rem;
 }
 </style>
