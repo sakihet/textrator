@@ -368,4 +368,7 @@ const updateSize = (id) => {
 .h5 {
   height: 1.25rem;
 }
+label {
+  padding-right: 4px;
+}
 </style>
