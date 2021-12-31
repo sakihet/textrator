@@ -1,245 +1,374 @@
-<template>
-  <div id="app">
-    <AppHeader
-      :headerText="name"
-      :headerDescription="description"
-    />
-    <InputLabeled
-      inputId="imageText"
-      inputType="text"
-      labelName="text"
-      :value="image.text"
-      @input="image.text = $event"
-    />
-    <DatalistLabeled
-      selectId="font"
-      labelName="font"
-      :datalistList="fontList"
-      :value="image.font"
-      @input="updateFont($event.target.value)"
-    />
-    <InputLabeled
-      inputId="imageSize"
-      inputType="number"
-      labelName="size"
-      :value="image.textSize"
-      @input="image.textSize = $event"
-    />
-    <InputLabeled
-      inputId="foregroundColor"
-      inputType="color"
-      labelName="foreground color"
-      :value="image.color.foreground"
-      @input="image.color.foreground = $event"
-    />
-    <InputLabeled
-      inputId="backgrounColor"
-      inputType="color"
-      labelName="background color"
-      :value="image.color.background"
-      @input="image.color.background = $event"
-    />
-    <InputLabeled
-      inputId="height"
-      inputType="number"
-      labelName="height"
-      :value="image.size.height"
-      @input="image.size.height = $event"
-    />
-    <InputLabeled
-      inputId="width"
-      inputType="number"
-      labelName="width"
-      :value="image.size.width"
-      @input="image.size.width = $event"
-    />
-    <SelectLabeled
-      selectId="sizePresets"
-      labelName="size presets"
-      :optionList="sizeList"
-      @select="updateSize($event)"
-    />
-    <SelectLabeled
-      selectId="baseline"
-      labelName="baseline"
-      :optionList="baselineList"
-      @select="updateBaseline($event)"
-    />
-    <InputLabeled
-      inputId="angle"
-      inputType="number"
-      labelName="angle"
-      :value="image.angle"
-      @input="image.angle = $event"
-    />
-    <InputCheckboxLabeled
-      inputId="transparent"
-      labelName="transparent"
-      :isChecked="image.isTransparent"
-      @change="image.isTransparent = $event"
-    />
-    <InputLabeled
-      inputId="filterBlur"
-      inputType="number"
-      labelName="blur"
-      :value="image.filter.blur"
-      @input="image.filter.blur = $event"
-    />
-    <InputLabeled
-      inputId="filterContrast"
-      inputType="number"
-      labelName="contrast"
-      :value="image.filter.contrast"
-      @input="image.filter.contrast = $event"
-    />
-    <InputLabeled
-      inputId="filterGrayscale"
-      inputType="number"
-      labelName="grayscale"
-      :value="image.filter.grayscale"
-      @input="image.filter.grayscale = $event"
-    />
-    <InputLabeled
-      inputId="filterHueRotate"
-      inputType="number"
-      labelName="hue rotate"
-      :value="image.filter.hueRotate"
-      @input="image.filter.hueRotate = $event"
-    />
-    <AppAnchor
-      :href="dataURL"
-      download="image.png"
-      text="download"
-    />
-    <AppCanvas
-      :height="parseInt(image.size.height)"
-      :width="parseInt(image.size.width)"
-      :foregroundColor="image.color.foreground"
-      :backgroundColor="image.color.background"
-      :text="image.text"
-      :size="parseInt(image.textSize)"
-      :font="image.font"
-      :baseline="image.baseline"
-      :angle="parseInt(image.angle)"
-      :isTransparent="image.isTransparent"
-      :blur="image.filter.blur"
-      :contrast="image.filter.contrast"
-      :grayscale="image.filter.grayscale"
-      :hueRotate="image.filter.hueRotate"
-      v-on:updated="updateDataURL($event)"
-    />
-    <footer>
-      <a href="https://github.com/sakihet/textrator" target="_blank">Github</a>
-      <p>Released under the MIT License</p>
-      <p>version: {{ version }} ©︎ 2018-2021 <a href="https://sakih.net" target="_blank">saki</a></p>
-    </footer>
-  </div>
-</template>
-
-<script>
+<script setup>
 import { name, description, version } from '../package.json'
+import { ref } from 'vue'
+import AppCanvas from './components/AppCanvas.vue'
 import { BASELINES, FONTS, SIZE_PRESETS } from './constants'
-import AppAnchor from './components/AppAnchor'
-import AppCanvas from './components/AppCanvas'
-import AppHeader from './components/AppHeader'
-import DatalistLabeled from './components/DatalistLabeled'
-import InputCheckboxLabeled from './components/InputCheckboxLabeled'
-import InputLabeled from './components/InputLabeled'
-import SelectLabeled from './components/SelectLabeled'
 
-export default {
-  name: 'App',
-  components: {
-    AppAnchor,
-    AppCanvas,
-    AppHeader,
-    DatalistLabeled,
-    InputCheckboxLabeled,
-    InputLabeled,
-    SelectLabeled
-  },
-  data () {
-    return {
-      name: name[0].toUpperCase() + name.slice(1),
-      dataURL: '',
-      description: description,
-      version: version,
-      image: {
-        angle: 0,
-        baseline: 'middle',
-        color: {
-          foreground: '#000000',
-          background: '#ffffff'
-        },
-        filter: {
-          blur: 0,
-          contrast: 100,
-          grayscale: 0,
-          hueRotate: 0
-        },
-        font: 'sans-serif',
-        isTransparent: false,
-        size: {
-          height: 256,
-          width: 256
-        },
-        text: 'hello.',
-        textSize: 64
-      },
-      sizeList: SIZE_PRESETS,
-      baselineList: BASELINES,
-      fontList: FONTS
-    }
-  },
-  methods: {
-    updateBaseline: function (id) {
-      if (id > 0) {
-        this.image.baseline = this.baselineList.find(x => x.id === parseInt(id)).name
-      } else {
-        this.image.baseline = 'middle'
-      }
-    },
-    updateDataURL: function (dataURL) {
-      this.dataURL = dataURL
-    },
-    updateFont: function (font) {
-      if (font) {
-        const newFont = this.fontList.find(x => x === font)
-        this.image.font = newFont
-      }
-    },
-    updateSize: function (sizeId) {
-      if (sizeId > 0) {
-        const size = this.sizeList.find(x => x.id === parseInt(sizeId))
-        this.image.size.width = size.width
-        this.image.size.height = size.height
-      } else {
-        this.image.size.width = 256
-        this.image.size.height = 256
-      }
-    }
+const text = ref('hello')
+const font = ref('times new roman')
+const size = ref(64)
+const height = ref(256)
+const width = ref(256)
+const fgColor = ref('#000000')
+const bgColor = ref('#ffffff')
+const isTransparent = ref(false)
+const baseline = ref('middle')
+const angle = ref(0)
+const blur = ref(0)
+const contrast = ref(100)
+const grayscale = ref(0)
+const hueRotate = ref(0)
+const dataURL = ref('')
+const updateDataURL = (data) => {
+  dataURL.value = data
+}
+const capitalize = (text) => {
+  return text[0].toUpperCase() + text.substring(1)
+}
+const updateSize = (id) => {
+  if (id > 0) {
+    const s = SIZE_PRESETS.find(x => x.id === parseInt(id))
+    height.value = s.height
+    width.value = s.width
   }
 }
 </script>
 
-<style>
-/* reset */
-* {
-  box-sizing: border-box;
-}
-body,
-h1,
-p {
-  margin: 0;
-}
-body {
-  min-height: 100vh;
-}
+<template>
+  <div class="flex-column align-center">
+    <header class="padding-top-2 padding-bottom-2">
+      <h1>{{ capitalize(name) }}</h1>
+      <p>{{ description }}</p>
+    </header>
+    <main class="flex-column">
+      <div class="flex-row">
+        <div class="flex-auto"></div>
+        <div class="flex-auto flex-row min-w-256 max-w-256">
+          <form>
+            <div class="flex-row">
+              <label
+                for="imageText"
+                class="min-w-128 align-right"
+              >
+                text
+              </label>
+              <input
+                type="text"
+                v-model="text"
+                id="imageText"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageFont"
+                class="min-w-128 align-right"
+              >
+                font
+              </label>
+              <select
+                id="imageFont"
+                class="min-w-128 h5"
+                v-model="font"
+              >
+                <option
+                  v-for="f in FONTS"
+                  :value="f"
+                >
+                  {{ f }}
+                </option>
+              </select>
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageSize"
+                class="min-w-128 align-right"
+              >
+                size
+              </label>
+              <input
+                type="number"
+                v-model="size"
+                id="imageSize"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageHeight"
+                class="min-w-128 align-right"
+              >
+                height
+              </label>
+              <input
+                type="number"
+                v-model="height"
+                id="imageHeight"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageWidth"
+                class="min-w-128 align-right"
+              >
+                width
+              </label>
+              <input
+                type="number"
+                v-model="width"
+                id="imageWidth"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="sizePreset"
+                class="min-w-128 align-right"
+              >
+                size presets
+              </label>
+              <select
+                id="sizePreset"
+                class="min-w-128 h5"
+                @change="updateSize($event.target.value)"
+              >
+                <option selected>-</option>
+                <option
+                  v-for="s in SIZE_PRESETS"
+                  :value="s.id"
+                >
+                  {{ s.name }}
+                </option>
+              </select>
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageFgColor"
+                class="min-w-128 align-right"
+              >
+                foreground color
+              </label>
+              <input
+                type="color"
+                v-model="fgColor"
+                id="imageFgColor"
+                class="min-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageBgColor"
+                class="min-w-128 align-right"
+              >
+                background color
+              </label>
+              <input
+                type="color"
+                v-model="bgColor"
+                id="imageBgColor"
+                class="min-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageIsTransparent"
+                class="min-w-128 align-right"
+              >
+                transparent
+              </label>
+              <input
+                type="checkbox"
+                v-model="isTransparent"
+                id="imageIsTransparent"
+                class="h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                class="min-w-128 align-right"
+                for="baseline"
+              >
+                baseline
+              </label>
+              <select
+                id="baseline"
+                class="min-w-128 h5"
+                v-model="baseline"
+              >
+                <option
+                  v-for="b in BASELINES"
+                  :value="b"
+                >
+                  {{ b }}
+                </option>
+              </select>
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageAngle"
+                class="min-w-128 align-right"
+              >
+                angle
+              </label>
+              <input
+                type="number"
+                v-model="angle"
+                id="imageAngle"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageBlur"
+                class="min-w-128 align-right"
+              >
+                blur
+              </label>
+              <input
+                type="number"
+                v-model="blur"
+                id="imageBlur"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageContrast"
+                class="min-w-128 align-right"
+              >
+                contrast
+              </label>
+              <input
+                type="number"
+                v-model="contrast"
+                id="imageContrast"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageGrayscale"
+                class="min-w-128 align-right"
+              >
+                grayscale
+              </label>
+              <input
+                type="number"
+                v-model="grayscale"
+                id="imageGrayscale"
+                class="max-w-128 h5"
+              >
+            </div>
+            <div class="flex-row">
+              <label
+                for="imageHueRotate"
+                class="min-w-128 align-right"
+              >
+                hur rotate
+              </label>
+              <input
+                type="number"
+                v-model="hueRotate"
+                id="imageHueRotate"
+                class="max-w-128 h5"
+              >
+            </div>
+            <a
+              :href="dataURL"
+              download="image.png"
+            >
+              download
+            </a>
+          </form>
+        </div>
+        <div class="flex-auto"></div>
+      </div>
+      <div>
+        <AppCanvas
+          :text="text"
+          :font="font"
+          :size="size"
+          :height="height"
+          :width="width"
+          :fgColor="fgColor"
+          :bgColor="bgColor"
+          :isTransparent="isTransparent"
+          :baseline="baseline"
+          :angle="angle"
+          :blur="blur"
+          :contrast="contrast"
+          :grayscale="grayscale"
+          :hueRotate="hueRotate"
+          @updated="updateDataURL($event)"
+        />
+      </div>
+    </main>
+    <footer class="appFooter">
+      <a href="https://github.com/sakihet/textrator" target="_blank">Github</a>
+      <br>
+      Released under the MIT License
+      <br>
+      version: {{ version }} ©︎ 2018-2021 <a href="https://sakih.net" target="_blank">saki</a>
+    </footer>
+  </div>
+</template>
 
-#app {
+<style>
+@import './assets/base.css';
+
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
+}
+.padding-left-1 {
+  padding-left: var(--space-1);
+}
+.padding-top-2 {
+  padding-top: var(--space-2);
+}
+.padding-bottom-2 {
+  padding-bottom: var(--space-2);
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-auto {
+  flex: auto;
+}
+.align-center {
   text-align: center;
 }
-footer {
-  color: #757575;
+.align-right {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
+}
+.min-w-128 {
+  min-width: 128px;
+}
+.max-w-128 {
+  max-width: 128px;
+}
+.min-w-256 {
+  min-width: 256px;
+}
+.max-w-256 {
+  max-width: 256px;
+}
+.h4 {
+  height: 1rem;
+}
+.h5 {
+  height: 1.25rem;
+}
+label {
+  padding-right: 4px;
 }
 </style>

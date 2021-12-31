@@ -1,28 +1,10 @@
 export const BASELINES = [
-  {
-    id: 1,
-    name: 'top'
-  },
-  {
-    id: 2,
-    name: 'hanging'
-  },
-  {
-    id: 3,
-    name: 'middle'
-  },
-  {
-    id: 4,
-    name: 'alphabetic'
-  },
-  {
-    id: 5,
-    name: 'ideographic'
-  },
-  {
-    id: 6,
-    name: 'bottom'
-  }
+  'top',
+  'hanging',
+  'middle',
+  'alphabetic',
+  'ideographic',
+  'bottom'
 ]
 
 export const FONTS = [

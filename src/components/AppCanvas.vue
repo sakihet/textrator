@@ -1,88 +1,99 @@
-<template>
-  <div>
-    <canvas
-      id="cv"
-      :height="height"
-      :width="width"
-    >
-    </canvas>
-    <div hidden>
-      {{ backgroundColor }}
-      {{ foregroundColor }}
-      {{ text }}
-      {{ size }}
-      {{ font }}
-      {{ baseline }}
-      {{ isTransparent }}
-      {{ blur }}
-      {{ contrast }}
-      {{ grayscale }}
-      {{ hueRotate }}
-      {{ angle }}
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'AppCanvas',
-  props: {
-    height: Number,
-    width: Number,
-    foregroundColor: String,
-    backgroundColor: String,
-    text: String,
-    size: Number,
-    font: String,
-    baseline: String,
-    angle: Number,
-    isTransparent: Boolean,
-    blur: Number,
-    contrast: Number,
-    grayscale: Number,
-    hueRotate: Number
+<script setup>
+import { onMounted, onUpdated } from 'vue'
+const props = defineProps({
+  text: {
+    type: String
   },
-  mounted () {
-    this.draw()
-    this.emitDataURL()
+  font: {
+    type: String
   },
-  methods: {
-    draw: function () {
-      const cv = document.getElementById('cv')
-      const ctx = cv.getContext('2d')
-      ctx.clearRect(0, 0, this.width, this.height)
-      ctx.font = this.size + 'px' + ' ' + this.font
-      if (this.isTransparent) {
-        ctx.clearRect(0, 0, this.width, this.height)
-      } else {
-        ctx.fillStyle = this.backgroundColor
-        ctx.fillRect(0, 0, this.width, this.height)
-      }
-      ctx.fillStyle = this.foregroundColor
-      ctx.textAlign = 'center'
-      ctx.textBaseline = this.baseline
-      ctx.save()
-      ctx.translate(this.width / 2, this.height / 2)
-      ctx.rotate(this.angle * Math.PI / 180)
-      ctx.filter = `blur(${this.blur}px) contrast(${this.contrast}%) grayscale(${this.grayscale}%) hue-rotate(${this.hueRotate}deg)`
-      ctx.fillText(this.text, 0, 0)
-      ctx.restore()
-    },
-    emitDataURL: function () {
-      const dataURL = document.getElementById('cv').toDataURL('image/png')
-      this.$emit('updated', dataURL)
-    }
+  size: {
+    type: Number
   },
-  updated () {
-    this.draw()
-    this.emitDataURL()
+  height: {
+    type: Number
+  },
+  width: {
+    type: Number
+  },
+  fgColor: {
+    type: String
+  },
+  bgColor: {
+    type: String
+  },
+  isTransparent: {
+    type: Boolean
+  },
+  baseline: {
+    type: String
+  },
+  angle: {
+    type: Number
+  },
+  blur: {
+    type: Number
+  },
+  contrast: {
+    type: Number
+  },
+  grayscale: {
+    type: Number
+  },
+  hueRotate: {
+    type: Number
   }
+})
+const emits = defineEmits(['updated'])
+onMounted(() => {
+  console.log('mounted')
+  draw()
+  emitDataURL()
+})
+onUpdated(() => {
+  console.log('updated')
+  draw()
+  emitDataURL()
+})
+const draw = () => {
+  console.log('draw')
+  const cv = document.querySelector('#cv')
+  const ctx = cv.getContext('2d')
+  ctx.clearRect(0, 0, props.width, props.height)
+  ctx.font = `${props.size}px ${props.font}`
+  if (props.isTransparent) {
+    ctx.clearRect(0, 0, props.width, props.height)
+  } else {
+    ctx.fillStyle = props.bgColor
+    ctx.fillRect(0, 0, props.width, props.height)
+  }
+  ctx.fillStyle = props.fgColor
+  ctx.textAlign = 'center'
+  ctx.textBaseline = props.baseline
+  ctx.save()
+  ctx.translate(props.width / 2, props.height / 2)
+  ctx.rotate(props.angle * Math.PI / 180)
+  ctx.filter = `blur(${props.blur}px) contrast(${props.contrast}%) grayscale(${props.grayscale}%) hue-rotate(${props.hueRotate}deg)`
+  ctx.fillText(props.text, 0, 0)
+  ctx.restore()
+}
+const emitDataURL = () => {
+  const dataURL = document.querySelector('#cv').toDataURL('image/png')
+  emits('updated', dataURL)
 }
 </script>
 
+<template>
+  <canvas
+    class="appCanvas"
+    id="cv"
+    :height="height"
+    :width="width"
+  ></canvas>
+</template>
+
 <style scoped>
-canvas {
-  margin-top: 10px;
+.appCanvas {
   border: 1px dotted;
 }
 </style>
