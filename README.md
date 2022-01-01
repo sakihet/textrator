@@ -1,14 +1,17 @@
-# .
+# Textrator
 
-This template should help get you started developing with Vue 3 in Vite.
+An open-source text image generator.
 
-## Recommended IDE Setup
+## Description
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur).
+You can easily generate text images by simply entering text and parameters into it. Use it for any purpose.
 
-## Customize configuration
+"Text Image Generator" was renamed "Textrator".
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Tech
+
+- Vue 3
+- Vite
 
 ## Project Setup
 
@@ -27,3 +30,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## License
+
+MIT
