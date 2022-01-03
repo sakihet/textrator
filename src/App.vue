@@ -309,7 +309,7 @@ const updateSize = (id) => {
       <br>
       Released under the MIT License
       <br>
-      version: {{ version }} ©︎ 2018-2021 <a href="https://sakih.net" target="_blank">saki</a>
+      version: {{ version }} ©︎ 2018-present <a href="https://sakih.net" target="_blank">saki</a>
     </footer>
   </div>
 </template>
