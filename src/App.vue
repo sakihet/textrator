@@ -1,374 +1,288 @@
-<script setup>
-import { name, description, version } from '../package.json'
-import { ref } from 'vue'
+<script setup lang="ts">
+import {store} from './store'
 import AppCanvas from './components/AppCanvas.vue'
-import { BASELINES, FONTS, SIZE_PRESETS } from './constants'
-
-const text = ref('hello')
-const font = ref('times new roman')
-const size = ref(64)
-const height = ref(256)
-const width = ref(256)
-const fgColor = ref('#000000')
-const bgColor = ref('#ffffff')
-const isTransparent = ref(false)
-const baseline = ref('middle')
-const angle = ref(0)
-const blur = ref(0)
-const contrast = ref(100)
-const grayscale = ref(0)
-const hueRotate = ref(0)
-const dataURL = ref('')
-const updateDataURL = (data) => {
-  dataURL.value = data
-}
-const capitalize = (text) => {
-  return text[0].toUpperCase() + text.substring(1)
-}
-const updateSize = (id) => {
-  if (id > 0) {
-    const s = SIZE_PRESETS.find(x => x.id === parseInt(id))
-    height.value = s.height
-    width.value = s.width
-  }
-}
+import {FONTS, BASELINES} from './constants'
 </script>
 
 <template>
-  <div class="flex-column align-center">
-    <header class="padding-top-2 padding-bottom-2">
-      <h1>{{ capitalize(name) }}</h1>
-      <p>{{ description }}</p>
-    </header>
-    <main class="flex-column">
+  <div class="layout-center text-center layout-stack-6">
+    <div class="">
+      <div>
+        <h1 class="py-4">Textrator</h1>
+      </div>
+      <div class="py-2">
+        <p class="">Text image generator</p>
+      </div>
+    </div>
+    <div class="layout-stack-1 text-secondary">
       <div class="flex-row">
-        <div class="flex-auto"></div>
-        <div class="flex-auto flex-row min-w-256 max-w-256">
-          <form>
-            <div class="flex-row">
-              <label
-                for="imageText"
-                class="min-w-128 align-right"
-              >
-                text
-              </label>
-              <input
-                type="text"
-                v-model="text"
-                id="imageText"
-                class="max-w-128 h5"
-              >
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span>
+                Text
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageFont"
-                class="min-w-128 align-right"
-              >
-                font
-              </label>
-              <select
-                id="imageFont"
-                class="min-w-128 h5"
-                v-model="font"
-              >
-                <option
-                  v-for="f in FONTS"
-                  :value="f"
-                >
-                  {{ f }}
-                </option>
-              </select>
+            <input
+              type="text"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.text"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span>
+                Font
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageSize"
-                class="min-w-128 align-right"
-              >
-                size
-              </label>
-              <input
-                type="number"
-                v-model="size"
-                id="imageSize"
-                class="max-w-128 h5"
-              >
+            <select
+              class="h-6 w-32 border-solid border-1 border-color-primary"
+              v-model="store.font"
+            >
+              <option v-for="f in FONTS" :value="f">{{ f }}</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span>
+                Size
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageHeight"
-                class="min-w-128 align-right"
-              >
-                height
-              </label>
-              <input
-                type="number"
-                v-model="height"
-                id="imageHeight"
-                class="max-w-128 h5"
-              >
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.size"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span>
+                Height
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageWidth"
-                class="min-w-128 align-right"
-              >
-                width
-              </label>
-              <input
-                type="number"
-                v-model="width"
-                id="imageWidth"
-                class="max-w-128 h5"
-              >
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.height"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span>
+                Width
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="sizePreset"
-                class="min-w-128 align-right"
-              >
-                size presets
-              </label>
-              <select
-                id="sizePreset"
-                class="min-w-128 h5"
-                @change="updateSize($event.target.value)"
-              >
-                <option selected>-</option>
-                <option
-                  v-for="s in SIZE_PRESETS"
-                  :value="s.id"
-                >
-                  {{ s.name }}
-                </option>
-              </select>
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.width"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="text-small">
+                Foreground color
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageFgColor"
-                class="min-w-128 align-right"
-              >
-                foreground color
-              </label>
-              <input
-                type="color"
-                v-model="fgColor"
-                id="imageFgColor"
-                class="min-w-128 h5"
-              >
+            <input
+              type="color"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.fgColor"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="text-small">
+                Background color
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageBgColor"
-                class="min-w-128 align-right"
-              >
-                background color
-              </label>
-              <input
-                type="color"
-                v-model="bgColor"
-                id="imageBgColor"
-                class="min-w-128 h5"
-              >
+            <input
+              type="color"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.bgColor"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Transparent
+              </span>
             </div>
-            <div class="flex-row">
-              <label
-                for="imageIsTransparent"
-                class="min-w-128 align-right"
-              >
-                transparent
-              </label>
+            <div class="h-6 w-32 text-left">
               <input
                 type="checkbox"
-                v-model="isTransparent"
-                id="imageIsTransparent"
-                class="h5"
-              >
+                class="h-6 border-solid border-1 border-color-primary"
+                v-model="store.isTransparent"
+              />
             </div>
-            <div class="flex-row">
-              <label
-                class="min-w-128 align-right"
-                for="baseline"
-              >
-                baseline
-              </label>
-              <select
-                id="baseline"
-                class="min-w-128 h5"
-                v-model="baseline"
-              >
-                <option
-                  v-for="b in BASELINES"
-                  :value="b"
-                >
-                  {{ b }}
-                </option>
-              </select>
-            </div>
-            <div class="flex-row">
-              <label
-                for="imageAngle"
-                class="min-w-128 align-right"
-              >
-                angle
-              </label>
-              <input
-                type="number"
-                v-model="angle"
-                id="imageAngle"
-                class="max-w-128 h5"
-              >
-            </div>
-            <div class="flex-row">
-              <label
-                for="imageBlur"
-                class="min-w-128 align-right"
-              >
-                blur
-              </label>
-              <input
-                type="number"
-                v-model="blur"
-                id="imageBlur"
-                class="max-w-128 h5"
-              >
-            </div>
-            <div class="flex-row">
-              <label
-                for="imageContrast"
-                class="min-w-128 align-right"
-              >
-                contrast
-              </label>
-              <input
-                type="number"
-                v-model="contrast"
-                id="imageContrast"
-                class="max-w-128 h5"
-              >
-            </div>
-            <div class="flex-row">
-              <label
-                for="imageGrayscale"
-                class="min-w-128 align-right"
-              >
-                grayscale
-              </label>
-              <input
-                type="number"
-                v-model="grayscale"
-                id="imageGrayscale"
-                class="max-w-128 h5"
-              >
-            </div>
-            <div class="flex-row">
-              <label
-                for="imageHueRotate"
-                class="min-w-128 align-right"
-              >
-                hur rotate
-              </label>
-              <input
-                type="number"
-                v-model="hueRotate"
-                id="imageHueRotate"
-                class="max-w-128 h5"
-              >
-            </div>
-            <a
-              :href="dataURL"
-              download="image.png"
-            >
-              download
-            </a>
-          </form>
+          </label>
         </div>
-        <div class="flex-auto"></div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Baseline
+              </span>
+            </div>
+            <select
+              class="h-6 w-32 border-solid border-1 border-color-primary"
+              v-model="store.baseline"
+            >
+              <option v-for="b in BASELINES" :value="b">{{ b }}</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Angle
+              </span>
+            </div>
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.angle"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Blur
+              </span>
+            </div>
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.blur"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Contrast
+              </span>
+            </div>
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.contrast"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Grayscale
+              </span>
+            </div>
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.grayscale"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="mx-auto">
+          <label class="flex-row">
+            <div class="w-32 text-right px-2">
+              <span class="">
+                Hue rotate
+              </span>
+            </div>
+            <input
+              type="number"
+              class="h-6 w-32 border-solid border-1 border-color-primary px-2"
+              v-model="store.hueRotate"
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a
+        class="text-decoration-none text-link"
+        :href="store.dataURL"
+        download="image.png"
+      >Download</a>
+    </div>
+    <div>
+      <AppCanvas
+        :text="store.text"
+        :font="store.font"
+        :size="store.size"
+        :height="store.height"
+        :width="store.width"
+        :bgColor="store.bgColor"
+        :fgColor="store.fgColor"
+        :isTransparent="store.isTransparent"
+        :baseline="store.baseline"
+        :angle="store.angle"
+        :blur="store.blur"
+        :contrast="store.contrast"
+        :grayscale="store.grayscale"
+        :hueRotate="store.hueRotate"
+        :dataURL="store.dataURL"
+      />
+    </div>
+    <div class="layout-stack-2">
+      <div>
+        <a
+          class="text-decoration-none text-link text-small"
+          href="https://github.com/sakihet/textrator"
+        >GitHub</a>
       </div>
       <div>
-        <AppCanvas
-          :text="text"
-          :font="font"
-          :size="size"
-          :height="height"
-          :width="width"
-          :fgColor="fgColor"
-          :bgColor="bgColor"
-          :isTransparent="isTransparent"
-          :baseline="baseline"
-          :angle="angle"
-          :blur="blur"
-          :contrast="contrast"
-          :grayscale="grayscale"
-          :hueRotate="hueRotate"
-          @updated="updateDataURL($event)"
-        />
+        <a
+          class="text-decoration-none text-link text-small"
+          href="https://sakih.net/"
+        >©︎ 2018-PRESENT saki</a>
       </div>
-    </main>
-    <footer class="appFooter">
-      <a href="https://github.com/sakihet/textrator" target="_blank">Github</a>
-      <br>
-      Released under the MIT License
-      <br>
-      version: {{ version }} ©︎ 2018-present <a href="https://sakih.net" target="_blank">saki</a>
-    </footer>
+    </div>
   </div>
 </template>
-
-<style>
-@import './assets/base.css';
-
-:root {
-  --space-1: 8px;
-  --space-2: 16px;
-}
-.padding-left-1 {
-  padding-left: var(--space-1);
-}
-.padding-top-2 {
-  padding-top: var(--space-2);
-}
-.padding-bottom-2 {
-  padding-bottom: var(--space-2);
-}
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-.flex-auto {
-  flex: auto;
-}
-.align-center {
-  text-align: center;
-}
-.align-right {
-  text-align: right;
-}
-.align-left {
-  text-align: left;
-}
-.min-w-128 {
-  min-width: 128px;
-}
-.max-w-128 {
-  max-width: 128px;
-}
-.min-w-256 {
-  min-width: 256px;
-}
-.max-w-256 {
-  max-width: 256px;
-}
-.h4 {
-  height: 1rem;
-}
-.h5 {
-  height: 1.25rem;
-}
-label {
-  padding-right: 4px;
-}
-</style>
