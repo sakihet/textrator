@@ -2,6 +2,7 @@
 import {store} from './store'
 import AppCanvas from './components/AppCanvas.vue'
 import {FONTS, BASELINES} from './constants'
+import {version} from '../package.json'
 </script>
 
 <template>
@@ -271,6 +272,11 @@ import {FONTS, BASELINES} from './constants'
       />
     </div>
     <div class="layout-stack-2">
+      <div>
+        <span class="text-small">
+          v{{ version }}
+        </span>
+      </div>
       <div>
         <a
           class="text-decoration-none text-link text-small"
