@@ -1,7 +1,12 @@
 
 # Textrator
 
-Text image generator
+Textrator is a text image generator on [HTML canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API). You can make text images by simply inputting text and parameters. This is a small SPA built with [Vue](https://vuejs.org/).
+
+Feel free to use it whenerver you want to generate images from text.
+
+## Screenshots
+![textrator](screenshots/textrator.png)
 
 ---
 
